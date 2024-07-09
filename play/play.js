@@ -33,7 +33,7 @@ function removeOffModeClass() {
 // Função para reiniciar o temporizador
 function resetInactivityTimer() {
     clearTimeout(inactivityTimeout);
-    inactivityTimeout = setTimeout(addOffModeClass, 3000); // 3000 milissegundos (3 segundos) de inatividade
+    inactivityTimeout = setTimeout(addOffModeClass, 5000); // 3000 milissegundos (3 segundos) de inatividade
 }
 
 // Função para remover a classe .offmode quando houver atividade
@@ -58,7 +58,7 @@ controlsPlayer.addEventListener('mousedown', handleActivity);
 controlsPlayer.addEventListener('keydown', handleActivity);
 
 
-// qualidades
+// Qualidades
 var moreButton = document.getElementById('more');
 var viewModeElement = document.querySelector('.viewmode');
 
@@ -75,6 +75,14 @@ viewModeElement.addEventListener('click', function(event) {
     viewModeElement.classList.remove('m');
   }
 });
+
+// Adiciona um evento de teclado para a tecla "O"
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'o' || event.key === 'O') {
+    viewModeElement.classList.toggle('m');
+  }
+});
+
 
 
 // reiniciar video
@@ -323,8 +331,6 @@ document.addEventListener('keydown', function(event) {
         }
     }
 });
-
-
 // Seleciona elementos relevantes
 var video = document.getElementById('video');
 var buttons = document.querySelectorAll('.quality');
@@ -353,8 +359,14 @@ function loadVideo(sourceUrl) {
     if (button.getAttribute("data-source") === sourceUrl) {
       button.classList.add("p");
       downloadLink.href = sourceUrl; // Define o href do link de download
-      downloadLink.classList.add("p1"); // Adiciona a classe .p1 ao link de download
-      downloadLink.classList.add("p" + button.classList[1]); // Adiciona a classe específica de qualidade ao link de download
+
+      // Remove classes p1, p2, p3 da .download antes de adicionar a nova classe
+      downloadLink.classList.remove("p1", "p2", "p3");
+      
+      // Adiciona a classe específica de qualidade ao link de download
+      var qualityClass = button.classList[1]; // Assume que a segunda classe é a classe de qualidade (1080p, 720p, 480p)
+      downloadLink.classList.add("p" + qualityClass.substr(1)); // Adiciona p1, p2, p3 dependendo da qualidade
+
     } else {
       button.classList.remove("p");
     }
