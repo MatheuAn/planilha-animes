@@ -1,0 +1,141 @@
+.pageanime.iframepg {
+    display: none
+  }
+  
+  .pageanimeep.iframepg {
+    background: blue;
+  }
+  
+  .pageanimeep.iframepg .listeps {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0;
+    gap: 0
+  }
+  
+  .pageanimeep.iframepg .episodio {
+    padding:0;
+    border-radius: 0;
+  }
+
+
+  
+  .pageanimeep.iframepg .episodio a{
+    position: absolute;
+    top:0;
+    left:0;
+    width:75%;
+    border-radius:0;
+  }
+  
+  .pageanimeep.iframepg .episodio a img{
+    display: none
+  }
+  .pageanimeep.iframepg .episodio a:before{
+    display: none
+  }
+
+
+  .pageanimeep.iframepg .vieweP{
+  display: flex;
+  padding:10px 20px;
+  align-items: center;
+  flex-direction: row;
+  background: red;
+  }
+
+  .pageanimeep.iframepg .seasonN,
+  .pageanimeep.iframepg .epNN{
+    width:auto;
+    display: inline-flex;
+  }
+  
+  .pageanimeep.iframepg .seasonN{
+    display: none;  
+  }
+  
+  .pageanimeep.iframepg .epNN{
+    order:2;
+    order:1;
+    font-size:1.5em;
+    font-weight:900;
+    opacity:1;
+    margin-right:10px;
+    align-items: center;
+  }
+  
+  .pageanimeep.iframepg .epNN:after{
+    font-size:18px;
+    max-width:230px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-left:20px
+  }
+  .pageanimeep.iframepg .epNN:before {
+    display: none
+  }
+
+  .pageanimeep.iframepg .item{
+    order:3;
+    margin-left:auto;
+    margin-top:0;
+  }
+
+  .pageanimeep.iframepg .linkep h8,
+  .pageanimeep.iframepg .item h8{
+    display: none
+  }
+
+
+  .pageanimeep.iframepg .dadospesquisa{
+    flex-direction: column;
+    padding:0 10px;
+    box-sizing: border-box;
+  }
+  .pageanimeep.iframepg button{
+    display: flex!important;
+  }
+
+  .pageanimeep.iframepg .filtrospesq{
+    width:100%;
+    margin-left:0px; 
+    order:1
+  }
+  .pageanimeep.iframepg input{
+    background:;
+    padding:15px 25px!important;
+    border-radius:50px
+  }
+
+  .listtemporadas div{
+    max-width:unset;
+    min-width:100%;
+  }
+  .pageanimeep.iframepg .listtemporadas{
+    width:100%;
+    display: inline-flex!important;
+    order:2
+  }
+  .pageanimeep.iframepg .listtemporadas span{
+    background:;
+    width:auto; 
+    min-width:unset;
+    height:unset;
+    font-size:1em;
+    border-radius:5px; padding:5px 10px; box-sizing: border-box
+
+  }
+
+  .pageanimeep.iframepg .listtemporadas span:before{
+    display:none
+}
+.pageanimeep.iframepg .listtemporadas span.clicked {
+    background: green; 
+    min-width: unset;
+
+  }
+  .pageanimeep.iframepg .listtemporadas span:last-child.clicked{
+    min-width:80px;
+    padding:5px 10px
+  }
+  

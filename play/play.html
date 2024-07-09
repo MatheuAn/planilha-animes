@@ -1,0 +1,62 @@
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<main class="video-container">
+  <div class="controlsplayer">
+    <span class="poster" >
+        <img src="\play\imagens\logoplay.png"> 
+    </span>
+    <div class="viewmode">
+      <div>
+        <p>QUALIDADES</p>
+        <button class="quality 1080p" data-source="https://betterserver.ga/playlist/K/ZJ5bk3O8SI/yW514cyOh8/k2vrFVNrup/riAQ60PkkO/riAQ60PkkO.m3u8">1080p</button>
+        <button class="quality 720p" data-source="https://betterserver.ga/playlist/I/YUDch5ERWG/WqDegpim3d/whK7UYCBcd/7ge2RobYIs/7ge2RobYIs.m3u8">720p</button>
+        <button class="quality 480p" data-source="https://betterserver.ga/playlist/O/Ze07e5rOyz/mCFH0PhDSc/jYQmGppn19/N3hK2gH67M/N3hK2gH67M.m3u8">480p</button>
+      <p class="comandos">COMANDOS</p>
+      <span data-source="Avança o tempo">DUPLO CLIQUE</span>
+      <span data-source="Retrocede o tempo">SETA ESQUERDA</span>
+      <span data-source="Avança o tempo">SETA DIREITA</span>
+      <span data-source="Play/ Pausa">SPACE</span>
+      <span data-source="Pular abertura">P</span>
+      <span data-source="Reinicia video">Q</span>
+      <span data-source="Tela cheia">F</span>
+      </div>
+    </div>
+
+    <span class="topp">
+      <p>
+        Titulo AnimeTitulo AnimeTitulo AnimeTitulo AnimeTitulo AnimeTitulo
+        AnimeTitulo AnimeTitulo AnimeTitulo AnimeTitulo AnimeTitulo
+        AnimeTitulo AnimeTitulo AnimeTitulo Anime
+      </p>
+      <button id="pular"></button>
+      <button id="more"></button>
+    </span>
+    
+    <span class="medp">
+      <button id="lefttime"></button>
+      <button id="playpause"></button>
+      <button id="righttime"></button>
+    </span>
+
+    <span class="endp">
+      <h2 id="currentTime">00:00</h2> 
+      <input id="progress" type="range" min="0" max="100" value="0" step="0.01"/>
+      <h2 id="totalTime"></h2>
+    </span>
+
+    <span class="progress">
+      <a href="" class="download"></a>
+      <button id="volume"></button>
+      <button class="velocidade speed-btn">1x</button>
+      <button id="reiniciar"></button>
+      <button id="fullcontrols" class="full-screen-btn"></button>
+    </span>
+  </div>
+
+  <video id="video" class="1080p video" src=""></video>
+</main>
+
+<script src="play.js"></script>
+<link rel="stylesheet" href="play.css"/>

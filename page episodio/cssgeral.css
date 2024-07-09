@@ -1,0 +1,333 @@
+.iframes {
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+  width:30%;
+  min-height:100%;
+  flex:1; 
+}
+
+#iframeeps{
+ flex:1; border-radius:10px; width:100%; background: var(--contentB);
+}
+
+
+.listepspgep.offdunger{
+height:;
+}
+
+
+.nextepdate{
+margin-top: 45px;
+margin-bottom:10px;
+color: var(--contentB);
+font-size:0.8em;
+font-weight:700;
+background: var(--cor2);
+color: var(--linkA);
+padding:20px 30px;
+border-radius:10px;
+position: relative;
+height:60px;
+opacity:0.6;
+display: flex;
+align-items: center;
+justify-content: center
+}
+
+.nextepdate h7,
+.nextepdate h8{ color: var(--linkA);margin:0!important; font-weight:700}
+
+.nextepdate div:before{
+content:"\e002";
+font-family: 'Material Symbols Outlined';
+margin-right:20px;
+position: absolute;
+right:-25px;
+top:-25px;
+height:50px;
+width:50px;
+border-radius:50%;
+display: flex; align-items: center;
+justify-content: center;
+  background: var(--contentB);
+border:2px solid var(--cor2);
+  color: var(--cor2);
+  font-size:1.5em
+}
+
+.nextepdate span{margin-left:5px}
+
+
+.comentareppg a{
+background: var(--linkD);
+color: var(--linkC);
+padding:20px 30px;
+border-radius:10px;
+position: relative;
+ height:90px;
+}
+
+.comentareppg a{
+text-decoration: none;
+color: var(--linkC);
+font-size:1.5em;
+width:100%;
+display: flex;
+align-items: center;
+justify-content: left
+}
+
+.comentareppg a:after{
+position: absolute;
+content: "";
+width: 90px;
+height: 90px;
+background-image: url('https://aniwatchtv.to/images/talk.png');
+background-size: cover;
+position: absolute;
+right: 30px;
+bottom: 0;
+}
+
+
+.nextepdate.offdunger{
+display: none
+}
+.comentareppg.offdunger{
+margin-top: auto;
+}
+
+.comentareppg a:before{
+content:"\e0b7";
+  font-family: 'Material Symbols Outlined';
+margin-right:20px
+}
+
+#playerpage{
+display:flex;
+width:100%;
+flex:1;
+gap:50px;
+padding: 120px 100px 60px 100px;
+box-sizing: border-box;
+user-select: none;
+}
+
+.playerdiv{
+width:70%;
+background: #181b23;
+padding:20px;
+border-radius:20px
+}
+
+#playep{
+width:100%;
+height:500px;
+border-radius:20px;
+margin-bottom:20px
+}
+
+.titleeppg{
+color: var(--linkC)
+}
+
+.titleeppg span{
+display: flex;
+}
+
+.titleeppg h3{
+margin:0;
+font-size:18px;
+color: var(--linkB);
+font-family: var(--fontH)!important
+}
+
+.titleeppg h3:before{
+content:"\e1c4";
+font-family: 'Material Symbols Outlined';
+margin-right:10px;}
+
+
+
+.titleeppg span h3{
+margin-right:auto
+}
+
+
+.titleeppg h2{
+margin:20px 0 15px 0!important;
+color: var(--linkC);
+font-family: var(--fontH)!important
+}
+.titleeppg h8{
+opacity:0.6;
+margin:0;
+}
+
+
+.bdown{
+display: flex;
+align-items: center;
+gap:10px;
+width:100%;
+
+}
+
+.bdown h6{
+display:flex;
+align-items: center;
+margin:0;
+padding:0px 20px;
+font-weight:400;
+font-size:0.9em;
+background:transparent;
+border:2px solid rgba(150, 150, 150, 0.1);
+border-radius:999px;
+font-family: var(--fontH);
+opacity:0.6
+}
+.time:after{content:"min"; margin-left:5px}
+.dateep{border:none!important;}
+.dateep:before{content:"Episódio foi ao ar em"; margin-right:5px}
+
+
+.bdown span{margin-left:auto;}
+
+.bdown a:before{
+content:"\f090";
+font-family: 'Material Symbols Outlined';
+margin-right:10px;font-size:18px;}
+
+.bdown a{
+padding:0px 20px;
+border-radius:20px;
+margin-inline:5px;
+text-decoration: none;
+background: rgba(0,0,0,0.4);
+color: var(--linkC);
+display: flex;
+align-items: center;
+opacity:0.6
+}
+
+.bdown a:hover{
+opacity:1;
+}
+.bdown a.offeppg{
+display: none
+}
+
+
+
+.infoseppg{
+display: flex;
+align-items:center;
+color: var(--linkC);
+gap:10px;
+margin-top:40px
+}
+
+.infoseppg img{
+height:60px;
+width:60px;
+border-radius:50%;
+object-fit: cover;
+margin-right:15px;
+border:2px solid var(--linkB)
+}
+
+.infoseppg h6{
+margin:0!important;
+padding:0!important;
+line-height:unset!important;
+font-size:1em;
+font-family: var(--fontB);
+}
+
+
+.infoseppg h6:last-child{
+opacity:0.4;
+font-weight:400
+}
+
+.buttonseppg{
+margin-right: auto;
+gap:20px;
+display: flex
+}
+.buttonseppg button{
+border-radius:5px;
+border: none;
+padding:5px 20px;
+justify-content: center;
+display: flex;
+align-items: center;
+cursor: pointer;
+background: rgba(150, 150, 150, 0.1);
+border:2px solid transparent;
+color: var(--linkC);
+}
+
+
+.buttonseppg button a{
+display: flex;
+align-items: center!important;
+}
+
+.buttonseppg button:nth-child(1) a,
+.buttonseppg button:nth-child(1){
+background: var(--linkB);
+color: var(--contentB);
+font-weight:700}
+
+.buttonseppg button a{
+text-decoration: none;
+color: rgb(224, 222, 217);
+}
+
+
+.buttonseppg button:hover{opacity:1
+}
+.buttonseppg button:nth-child(2):hover{
+background: rgb(224, 222, 217,0.05);
+border: 2px solid rgb(224, 222, 217,0.05);
+opacity:1
+}
+
+.buttonseppg button:hover a{ 
+opacity:1
+}
+
+
+.buttonseppg button:nth-child(2) a:before{
+content:"\e002";
+margin-right:10px;
+font-family: 'Material Symbols Outlined'
+}
+.buttonseppg button:nth-child(1):before{
+content:"\e1bd";
+margin-right:10px;
+font-family: 'Material Symbols Outlined'
+}
+h1,h2,h3,h4,h5,h6,h7,h8{
+  font-family: var(--fontB);
+  color: var(--linkC)
+}
+
+.menu li:last-child,
+.search-container,
+.pSh{display: none}
+
+#comment {
+  position: relative;
+  top: unset;
+  right: unset;
+  width: unset;
+  padding: 20px;
+  z-index: 2;
+  background: var(--contentB);
+  color: var(--linkC);
+  margin: 0;
+  border-radius: 10px;
+}

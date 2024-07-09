@@ -1,0 +1,69 @@
+<section id="playerpage">
+  <div class="playerdiv">
+    <video id="playep" controls>
+      <source src="caminho-do-seu-video.mp4" type="video/mp4" />
+    </video>
+    <span class="titleeppg">
+      <span class="bdown">
+        <h6>FullHD</h6>
+        <h6>Legendado</h6>
+        <h6 class="time">24</h6>
+        <h6 class="dateep">05/07/2024</h6>
+        <span>
+          <a href="#"></a>
+        </span>
+      </span>
+
+      <h2 id="titleanime">
+        Boruto: Naruto Next Generations - T1 . Episódio 65 - Chi para ko
+      </h2>
+      <h8
+        >Momoshiki passa por uma transformação e se torna aparentemente
+        invencível. Boruto observa Naruto e Sasuke começarem a lutar com força
+        total, mas chega o momento de Boruto se juntar, e suas ações
+        determinarão o destino da batalha.</h8
+      >
+    </span>
+    <div class="infoseppg">
+      <span class="buttonseppg">
+        <button>
+          <a href="/2024/06/rascunho.html">Ver Todas as Temporadas</a>
+        </button>
+        <button>
+          <a href="/p/reportar-erro-de-episodio.html">Reportar Erro</a>
+        </button>
+      </span>
+    </div>
+  </div>
+  <div class="iframes">
+    <iframe
+      id="iframeeps"
+      src="https://criandotem.blogspot.com/2024/06/rascunho.html?m=1"
+      frameborder="0"
+    ></iframe>
+
+    <div class="nextepdate">
+      <div>
+        <h7>Próximo ep. previsto para </h7>
+        <span>(<h8></h8>)</span>
+      </div>
+    </div>
+    <div class="comentareppg">
+      <a href="#">Comentar</a>
+    </div>
+  </div>
+</section>
+<link rel="stylesheet" href="cssgeral.css" />
+<link rel="stylesheet" href="cssmobile.css" />
+<script>
+  function resizeIframe() {
+    var iframe = document.getElementById("iframeeps");
+    if (iframe) {
+      iframe.style.height =
+        iframe.contentWindow.document.body.scrollHeight + "px";
+    }
+  }
+
+  window.onload = resizeIframe;
+  window.onresize = resizeIframe;
+</script>

@@ -1,0 +1,70 @@
+@media (max-width: 1100px) {
+    #playerpage{
+        display: block;
+        padding:0;
+        border:2px solid green
+    }
+
+    .playerdiv{
+        width:100%;
+        border-radius:0;
+        padding:0
+    }
+
+    #playep{
+        border-radius:0;
+        height:400px
+    }
+
+    .titleeppg{
+        display: flex;
+        flex-direction: column;
+        padding:0 20px
+    }
+
+    .bdown{
+        order:2;
+        margin-bottom:20px
+    }
+    .bdown h6{
+        padding:2px 15px;
+        font-size:12px
+    }
+    .bdown h6:nth-child(1){
+        display: none
+    }
+    .bdown span a{
+        padding:2px 10px;
+    }
+    .bdown span a:before{
+        margin:0;
+        font-size:20px
+    }
+    .dateep:before{
+        display: none
+    }
+
+    #titleanime{
+        order:1;
+        margin-top:0!important
+    }
+    
+    .titleeppg h8{
+        order:3
+    }
+
+    .iframes{
+        width:100%
+    }
+    .nextepdate{
+        order:1
+    }
+
+    #iframeeps{
+        order:2
+    }
+
+    .comentareppg{
+        order:3
+    }
+}

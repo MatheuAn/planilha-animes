@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Load Video and Update Download Link</title>
+  <style>
+    /* Seus estilos CSS */
+    /* Defina as cores e estilos conforme necessário */
+  </style>
+</head>
+<body>
+
+<!-- Seu vídeo e botões -->
+<video controls id="video" class="1080p video" src=""></video>
+<button class="quality 1080p" data-source="https://betterserver.ga/playlist/K/ZJ5bk3O8SI/yW514cyOh8/k2vrFVNrup/riAQ60PkkO/riAQ60PkkO.m3u8">1080p</button>
+<button class="quality 720p" data-source="https://betterserver.ga/playlist/I/YUDch5ERWG/WqDegpim3d/whK7UYCBcd/7ge2RobYIs/7ge2RobYIs.m3u8">720p</button>
+<button class="quality 480p" data-source="https://betterserver.ga/playlist/O/Ze07e5rOyz/mCFH0PhDSc/jYQmGppn19/N3hK2gH67M/N3hK2gH67M.m3u8">480p</button>
+<a href="" class="download">Download</a>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script>
+// Seu JavaScript para carregar o vídeo com os botões de qualidade
+
+// Seleciona elementos relevantes
+var video = document.getElementById('video');
+var buttons = document.querySelectorAll('.quality');
+var downloadLink = document.querySelector('.download');
+var currentSource = null;
+var currentTimeBackup = 0;
+
+// Função para carregar o vídeo com o data-source especificado
+function loadVideo(sourceUrl) {
+  if (!sourceUrl) {
+    // Se o data-source estiver vazio, tenta encontrar o próximo botão com data-source
+    var nextButton = findNextButtonWithSource();
+    if (nextButton) {
+      sourceUrl = nextButton.getAttribute("data-source");
+    }
+  }
+
+  if (currentSource && currentSource !== sourceUrl) {
+    currentTimeBackup = video.currentTime;
+  }
+
+  video.src = sourceUrl;
+  currentSource = sourceUrl;
+
+  buttons.forEach((button) => {
+    if (button.getAttribute("data-source") === sourceUrl) {
+      button.classList.add("p");
+      downloadLink.href = sourceUrl; // Define o href do link de download
+      downloadLink.classList.add("p1"); // Adiciona a classe .p1 ao link de download
+      downloadLink.classList.add("p" + button.classList[1]); // Adiciona a classe específica de qualidade ao link de download
+    } else {
+      button.classList.remove("p");
+    }
+
+    // Oculta o botão se não tiver data-source
+    if (button.getAttribute("data-source") === "") {
+      button.style.display = "none";
+    } else {
+      button.style.display = "inline-block"; // Garante que os botões visíveis tenham display correto
+    }
+  });
+
+  if (Hls.isSupported() && sourceUrl.endsWith(".m3u8")) {
+    var hls = new Hls();
+    hls.loadSource(sourceUrl);
+    hls.attachMedia(video);
+
+    hls.on(Hls.Events.MANIFEST_PARSED, function () {
+      if (currentTimeBackup > 0) {
+        video.currentTime = currentTimeBackup;
+        currentTimeBackup = 0;
+      }
+      video.play();
+    });
+  } else {
+    video.addEventListener("loadedmetadata", function () {
+      if (currentTimeBackup > 0) {
+        video.currentTime = currentTimeBackup;
+        currentTimeBackup = 0;
+      }
+      video.play();
+    });
+  }
+}
+
+// Função para encontrar o próximo botão com data-source
+function findNextButtonWithSource() {
+  var foundNext = false;
+  for (var i = 0; i < buttons.length - 1; i++) {
+    if (buttons[i].getAttribute("data-source") === "" && buttons[i + 1].getAttribute("data-source") !== "") {
+      foundNext = true;
+      return buttons[i + 1];
+    }
+  }
+  return null;
+}
+
+// Verifica se há botões para inicializar o vídeo
+if (buttons.length > 0) {
+  var firstButton = buttons[0];
+  var sourceUrl = firstButton.getAttribute("data-source");
+  loadVideo(sourceUrl);
+}
+
+// Adiciona eventos de clique aos botões
+buttons.forEach((button) => {
+  button.addEventListener("click", function () {
+    var sourceUrl = this.getAttribute("data-source");
+    loadVideo(sourceUrl);
+  });
+});
+</script>
+
+</body>
+</html>

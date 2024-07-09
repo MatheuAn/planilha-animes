@@ -1,0 +1,280 @@
+
+    
+    @media (max-width: 1100px) {
+   
+        :root {
+            --altura-capa: 500px; 
+          }
+
+        .wid01{
+            background-image: none!important;
+            padding:0;
+            padding-top:350px;
+            width:100%;
+            flex-direction: column;
+        }
+        .capa{
+            height: var(--altura-capa);
+          width:100%;
+          position: absolute;
+          top:0;
+          
+        }
+        .capa img{
+          border-radius:0
+        }
+          
+       .wid01:after{
+        content:"";
+        position: absolute;
+        width:100%;
+        height: 700px;
+        top:-200px;
+        left:0;
+        background: linear-gradient(to top, var(--bodyB), transparent);
+        opacity:1;
+        z-index:1;pointer-events: none
+    }
+  
+  
+    .infos{
+      padding:0 10px;
+      z-index:2
+    }
+
+    .subtitle{
+        display: flex;
+        justify-content: right;
+        padding:0 20px 0 0;  
+    }
+    
+.subtitle span {
+    margin:0;
+    margin-left: 20px;
+    font-size:14px
+}
+
+.subtitle span:nth-child(2):before {
+    left: -12px;
+    width: 4px;
+    height: 4px;
+  }
+
+    #titleanime{
+      display: unset;
+     text-overflow: unset;
+     font-size:2em;
+     width:100%;
+    }
+
+    .lowinfos{
+        position: absolute;
+        left:10px;
+        margin:0;
+        transform: translateY(-30px);
+    }
+
+    
+    .lowinfos h8{display: none}
+
+ 
+    .nota{
+        font-size:1.5em;
+      padding-top:0px
+    }
+      
+      
+    .detals h8{
+        font-size:13px;
+        display: flex;
+        align-items: center;flex-basis: calc(25% - 10px); 
+    }
+
+    .detals span h8{
+        opacity:0.6
+    }
+    .detals h8:before{
+        font-family:'Material Symbols Outlined';
+        font-size:18px
+    }
+      
+    .detals span h8:nth-child(n+3){
+      display: none}
+
+    .descrition{
+      overflow: unset;
+      justify-content: space-between;
+      padding:0 10px;
+      direction:unset;
+      height:unset;
+      text-overflow: unset;
+      margin-top:35px
+    }
+    
+    .descrition:before{
+        content:"\e244";
+      font-family: 'Material Icons Outlined';font-size:22px;
+        margin-right:5px;transform: scaleX(-1);display: inline-flex
+    }
+
+    .geners{
+        display:flex;width:100%;
+      margin-top:20px;flex-wrap: wrap;gap:10px;padding:0}
+      
+      .geners h8{
+       background: rgba(255,255,255,0.1);padding:2px 15px; border-radius:50px;
+    }
+      
+      
+      .geners h8:before{display: none}
+
+    .buttons{
+        margin-top:50px;
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+    }
+    .buttons .bA{
+        width: calc(100% - 20px);
+        display: flex;
+        position: fixed;
+        bottom:5px;
+        left:10px;
+        padding:10px;
+        box-sizing: border-box;
+        border-radius:20px;
+        z-index:10;
+      overflow: hidden
+    }
+      .buttons .bA:before{
+      content:"";
+      position: absolute;
+      top:0;
+      left:0;
+      height:100%;
+      width:100%;
+      opacity:0.9;
+        background: var(--contentB);
+      z-index:-1}
+      
+    .Play{
+        flex:1;
+    }
+    
+
+    .barra{
+        width:100%;
+        justify-content: center;
+      position: relative;
+        margin:20px 0 0 0;padding:0;
+      right:unset;
+    }
+
+    .temporadas{
+        color: var(--linkC);
+        max-width:100%;
+        padding:0 0px 120px 0px!important;
+        margin:20px 0 0 0;
+    }
+
+
+    .dadospesquisa{
+        width:100%;
+        flex-direction: column;
+    }
+
+.filtrospesq{
+    width:calc(100% - 20px);
+    margin-left:0px;
+    margin-top:10px;
+}
+.dadospesquisa input{
+    border-radius:10px;
+    margin-left:0px;
+    width:100%; 
+}
+
+.dadospesquisa button{
+    display: none!important
+}
+
+.listtemporadas div{ 
+    max-width: 100%;
+}
+
+.listtemporadas span{
+    min-width:50px;
+    height:50px;
+    font-size:1em;
+    padding:0;
+    display: flex;
+    border-radius:50px;
+    justify-content: center;
+    align-items: center
+}
+
+
+      .listtemporadas span:last-child{
+      margin-right:10px}
+      
+.listtemporadas span:first-child{
+    margin-left:10px;
+}
+
+.listtemporadas span.clicked{
+    min-width: unset;
+    padding:5px 20px;
+    box-sizing: border-box
+}
+
+.listtemporadas span:last-child{
+    min-width: unset;
+    padding:5px 20px;
+    box-sizing: border-box
+    }
+     
+   .episodio:after{
+    top:22%;
+    left:35%
+}
+
+    .listeps{
+        grid-template-columns: repeat(4,1fr);
+        padding:0 10px;
+    }
+      
+      
+  .textB,
+  .dadosepsp{
+    min-width:unset;
+    padding:10px 20px
+      }
+      #lastepview:before{content:"Temporada";margin-right:5px}
+   
+      
+      #header{display: none}
+      #comment{position: relative;
+      top: unset;
+      right:unset;
+      width:100%}     
+      
+      .pSh{top:10px;
+      right:10px}
+      .pShc a{display: none}
+  
+  
+  }
+  
+  
+    
+    @media (max-width: 700px){
+        .listeps{
+            grid-template-columns: repeat(2,1fr);
+        }
+        
+    .detals h8:nth-child(n+4){
+        display: none
+    }
+    }
+    
+   

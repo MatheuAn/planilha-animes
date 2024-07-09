@@ -1,0 +1,393 @@
+
+body {
+  background: rgb(24, 13, 13);
+}
+input[type="range"] {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Não selecionável */
+  -webkit-touch-callout: none; /* Safari para iOS */
+}
+input[type="range"]:focus {
+  outline: none; /* Remove a borda de foco */
+}
+
+button:focus {
+  outline: none;
+}
+
+.video-container {
+  width: 100%;
+  height: 700px;
+  position: relative;
+  color: white;
+  margin: 0;
+  padding: 0;overflow:hidden;
+  cursor: pointer;user-select: none;margin-top:100px
+}
+.video-container.rightt:before,
+.video-container.leftt:before {
+  background: rgba(255, 255, 255, 0.03);
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 2;
+}
+.video-container.rightt:before {
+  left: unset;
+  right: 0;
+}
+
+#video {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+}
+.controlsplayer {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 25px 40px;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.poster {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+.poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.poster.hidden {
+  display: none;
+}
+
+.poster:before {
+  content: "";
+  background: rgb(1, 3, 12);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+  z-index: 1;
+  display: none;
+}
+
+.viewmode {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(17, 17, 17, 0.8);
+  display: flex;
+  transition: flex 1s;
+  z-index:3
+}
+
+.viewmode.m{
+  display: flex;
+}
+.viewmode div{
+width:300px;
+height:100%;
+background:#101118;
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px;
+ transform: translateX(-100vh);
+  box-sizing: border-box;
+  animation: slideIn 1s forwards;
+}
+
+    @keyframes slideIn {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+    .viewmode p{
+      margin:0
+    }
+.viewmode button {
+  border-radius: 5px;
+  border: none;
+  font-size: 19px !important;
+  padding:10px;
+  background:#13141c;
+  color: white
+}
+
+.viewmode button.p {
+  background-color:#fac919; /* Cor de fundo para indicar seleção ativa */
+}
+.viewmode button:nth-child(2).p {
+  background-color:#0d66ac;/* Cor de fundo para indicar seleção ativa */
+}
+.viewmode button:nth-child(3).p {
+  background-color: #089949/* Cor de fundo para indicar seleção ativa */
+}
+
+
+.comandos {
+  margin-top:20px!important
+}
+
+.viewmode span{
+  border-radius: 5px;
+  padding:10px;
+  box-sizing: border-box;
+  background:#13141c;
+  font-size:10px;
+  opacity:0.6;
+  display: flex
+}
+
+.viewmode span:after {
+  content: attr(data-source);
+  margin-left: auto;
+}
+
+
+
+.topp {
+  justify-content: right;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.topp p {
+  margin: 0;
+  margin-right: auto;
+  font-size: 2em;
+  padding: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  max-width: 60%;
+  align-items: center;
+  -webkit-box-orient: vertical;
+}
+
+.full-screen .topp p {
+  font-size: 3em;
+}
+
+.topp p:before {
+  content: "\e5cc";
+  font-family: "Material Symbols Outlined";
+  margin-right: 10px;
+}
+
+.topp button {
+  color: white;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+}
+#pular:before {
+  content: "\e044";
+  font-family: "Material Symbols Outlined";
+  margin-right: 10px;
+}
+#pular:after {
+  content: "Pular Abertura";
+  opacity: 0.6;
+}
+#pular:active {
+  background: rgba(255, 255, 255, 0.02);
+}
+#pular.p:after {
+  content: "Avançou o video...";
+}
+#more:before {
+  content: "\e018";
+  font-family: 'Material Symbols Outlined';
+}
+
+.medp {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+}
+.medp button {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: font-size 0.3s;
+}
+#playpause {
+  font-size: 7.5em;
+}
+#playpause:before {
+  content: "\e037";
+  font-family: "Material Symbols Outlined";
+}
+#playpause.pause:before {
+  content: "\e034";
+}
+
+#lefttime:before {
+  content: "\e059";
+  font-family: "Material Symbols Outlined";
+}
+#righttime:before {
+  content: "\e056";
+  font-family: "Material Symbols Outlined";
+}
+
+#lefttime:hover,
+#righttime:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+#lefttime:active,
+#righttime:active {
+  font-size: 5em;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+#playpause {
+  height: 150px;
+  width: 150px;
+}
+
+.endp {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+.endp input {
+  width: 100%;
+  height: 2px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+.endp h2 {
+  font-size: 1.2em;
+}
+
+.progress {
+  margin-top: 20px;
+  display: flex;
+  gap: 40px;
+}
+
+.progress button {
+  height: 60px;
+  width: 60px;
+  background: none;
+  border: none;
+  color: white;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5em;
+  border-radius: 10px;
+  padding: 5px;
+}
+.progress button:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+.download{
+  width:unset;
+  font-size:2em;
+  text-decoration: none;
+  color: white;
+  display: flex; align-items: center;
+}
+.download:before {
+  content: "\e052";
+  font-family: "Material Symbols Outlined";
+  margin-right: 10px;
+  font-size: 1.5em;
+}
+
+.velocidade{
+  width:auto!important
+}
+
+#volume:before {
+  content: "\e050";
+  font-family: "Material Symbols Outlined";
+}
+#volume.muted:before {
+  content: "\e04f";
+}
+
+#reiniciar {
+  margin-left: auto;
+}
+#reiniciar:before {
+  content: "\f053";
+  font-family: "Material Symbols Outlined";
+}
+#fullcontrols:before {
+  content: "\e5d0";
+  font-family: "Material Symbols Outlined";
+}
+
+.controlsplayer.offmode,
+.topp,
+.endp,
+.progress,
+#lefttime,
+#righttime{
+  opacity:0; 
+  pointer-events: none
+}
+.topp.v,
+.endp.v,
+.progress.v,
+#lefttime.v,
+#righttime.v{
+  opacity:unset!important; 
+  pointer-events: unset;  
+}
+  
+
+h2 {
+  margin: 0;
+  font-weight: 400;
+}

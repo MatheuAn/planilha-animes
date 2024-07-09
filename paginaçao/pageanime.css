@@ -1,0 +1,956 @@
+
+
+body{
+  background: black
+}
+
+
+#modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+}
+
+#modal img {
+  max-width: 80%;
+  max-height: 80%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+
+.wid01 {
+  padding: 120px 100px 60px 100px;
+  box-sizing: border-box;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  display: flex;
+  gap: 3em;
+  font-family: var(--fontH) !important
+}
+
+.wid01:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 250%;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(transparent, var(--bodyB));
+  opacity: 1;
+}
+
+.wid01:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0;
+  background: linear-gradient(to bottom, var(--contentB), transparent);
+  opacity: 0.8;
+}
+
+.moreinf {
+  z-index: 1;
+  color: #a19595;
+}
+
+.capa {
+  min-width: 20em;
+  height: 32em;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.capa img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.buttons {
+  margin-top: auto;
+  margin-bottom: 20px;
+  display: flex;
+  order: 6;
+}
+
+
+.bA {
+  align-items: center;
+  display: flex;
+  height: auto
+}
+
+
+.buttons a {
+  cursor: pointer;
+  width: auto;
+  font-size: 1em;
+  background: var(--linkB);
+  border: 1px solid rgba(255, 255, 255, 0);
+  color: var(--contentB);
+  text-decoration: none;
+  border-radius: 15px;
+  padding: 10px 25px 10px 60px;
+  position: relative;
+  font-weight: 600
+}
+
+.buttons a:before {
+  content: "\e1c4";
+  font-size: 1.5em;
+  font-family: 'Material Symbols Outlined';
+  margin-right: 30px;
+  position: absolute;
+  left: 20px;
+  top: 0px;
+  width: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+
+.buttons a:nth-child(2) {
+  margin-left: 20px;
+  padding: 10px 15px 10px 60px;
+  color: var(--linkC);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 400
+}
+
+.buttons a:nth-child(2):before {
+  content: "\e02c"
+}
+
+.buttons a:hover:nth-child(1) {
+  color: var(--linkB)
+}
+
+.buttons a:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+
+
+.lowinfos {
+  display: block;
+  margin-left: 60px;
+  text-align: center;
+}
+
+
+.nota {
+  position: relative;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  font-size: 1.9em;
+  padding-top: 20px
+}
+
+.lowinfos h8 {
+  font-size: 0.7em;
+  opacity: 0.4;
+  font-weight: 400
+}
+
+.nota:before {
+  content: "\e838";
+  margin-right: 10px;
+  font-family: 'Material Symbols Outlined';
+  color: orange;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.5em;
+}
+
+
+
+.infos {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.titulos {
+  display: flex;
+  order: 2
+}
+
+#titleanime {
+  font-size: 2.3em;
+  font-weight: 800;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  width: 70%;
+  line-height: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  transition: all 0.3s ease;
+  white-space: normal;
+}
+
+
+.subtitle {
+  font-size: 1.1em;
+  margin-top: 10px;
+  order: 1
+}
+
+#seasonN:after {
+  content: "Temporadas";
+  margin-left: 10px
+}
+
+.subtitle span {
+  margin-right: 30px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.6;
+  font-weight: 400
+}
+
+.subtitle span:nth-child(2):before {
+  content: "";
+  position: absolute;
+  display: flex;
+  left: -20px;
+  align-items: center;
+  background: rgb(114, 114, 114);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%
+}
+
+.geners {
+  opacity: 0.6;
+  display: flex;
+  gap: 40px;
+  margin-top: 5px;
+  padding-left: 15px;
+  order: 5
+}
+
+.geners h8 {
+  font-size: 0.9em;
+  position: relative
+}
+
+.geners h8:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -15px;
+  width: calc(100% + 30px);
+  height: calc(100% + 4px);
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#status {
+  border-radius: 5px;
+  background: var(--cor2);
+  color: var(--linkA);
+  opacity: 0.6;
+  box-sizing: border-box
+}
+
+#status.completo {
+  background: var(--cor1);
+  color: var(--linkA)
+}
+
+
+
+.descrition {
+  opacity: 0.6;
+  font-size: 1em;
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  height: 150px;
+  overflow-y: auto;
+  direction: rtl;
+  text-align: left;
+  padding-left: 10px;
+  order: 4
+}
+
+.descrition::-webkit-scrollbar {
+  width: 2px;
+  /* Largura da barra de rolagem vertical */
+}
+
+.descrition::-webkit-scrollbar-track {
+  background: var(--headC)
+    /*rgba(255,255,255,0.3); Cor do trilho */
+}
+
+.descrition::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.6);
+  /* Cor da parte móvel */
+  border-radius: 10px;
+  /* Bordas arredondadas */
+}
+
+
+
+@media screen and (min-width: 1100px) {
+  .descrition {
+    max-width: 80%;
+  }
+}
+
+
+
+.line {
+  display: flex;
+  gap: 20px
+}
+
+.detals {
+  gap: 20px;
+  display: flex;
+  margin-top: 12px;
+  margin-bottom: 0px;
+  align-items: center;
+  order: 3
+}
+
+.detals h8 {
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+}
+
+
+.detals span {
+  display: flex;
+  gap: 25px;
+  color: var(--linkC);
+  opacity: 0.8
+}
+
+.detals h8:nth-child(1) {
+  color: var(--contentB);
+  border-radius: 5px 5px 5px 5px;
+  padding: 0px 10px;
+}
+
+.detals h8:before {
+  opacity: 0.7;
+  margin-right: 5px;
+  font-weight: 400
+}
+
+.detals span h8:nth-child(1) {
+  color: var(--linkC);
+  padding: 0;
+  font-weight: unset
+}
+
+#status {
+  font-weight: 600
+}
+
+.detals span h8:nth-child(1):after {
+  content: "Episódios";
+  margin-left: 5px
+}
+
+
+.detals h8:before {
+  font-family: 'Material Symbols Outlined';
+  font-size: 18px
+}
+
+.detals h8:nth-child(1):before {
+  content: "\e043" !important;
+}
+
+.detals span h8:nth-child(1):before {
+  content: "\f05b" !important;
+}
+
+.detals span h8:nth-child(2):before {
+  content: "\e01c" !important;
+}
+
+.detals span h8:nth-child(3):before {
+  content: "\f16a" !important;
+}
+
+.detals span h8:nth-child(4):before {
+  content: "Adm:" !important;
+  font-family: var(--fontH);
+  font-size: 1em
+}
+
+
+
+
+
+.barra {
+  display: inline-block;
+  margin-left: auto;
+  padding: 10px;
+  border-radius: 20px;
+  position: absolute;
+  right: 60px;
+}
+
+.dadosepsp {
+  padding: 20px 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 470px
+}
+
+.dadosepsp div {
+  width: 100%
+}
+
+.porceps {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px
+}
+
+.historicoview {
+  font-size: 18px;
+  color: var(--linkC) !important
+}
+
+
+#lastepview:before {
+  content: "Temporada";
+  margin-right: 5px
+}
+
+
+.porceps h3 {
+  font-size: 16px;
+  color: var(--linkC)
+}
+
+.epsvistos {
+  margin-left: auto;
+  background: var(--linkD);
+  margin-bottom: 8px;
+  padding: 2px 10px;
+  border-radius: 5px
+}
+
+.marked-count {
+  font-weight: 700
+}
+
+
+.epsvistos h8:last-child {
+  opacity: 0.6;
+  font-size: 12px
+}
+
+
+.epsvistos h8:last-child:before {
+  content: "/"
+}
+
+.epsvistos h8:last-child:after {
+  content: "Eps";
+  margin-left: 5px
+}
+
+
+.progress-bar {
+  width: calc(100% - 5px);
+  margin-left: 5px;
+  display: flex;
+  background: var(--headC);
+  border-radius: 5px;
+  height: 5px;
+  margin-bottom: 10px
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+  border-radius: 5px;
+  background: var(--linkB);
+  transition: width 0.5s;
+  position: relative
+}
+
+.progress-fill:after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  height: 15px;
+  width: 15px;
+  border-radius: 10PX;
+  background: var(--linkB)
+}
+
+.textB {
+  padding: 20px 40px;
+  border-radius: 10px;
+  align-items: center;
+  display: flex;
+  margin-top: 20px;
+  gap: 20px
+}
+
+
+
+.textB h2 {
+  margin-bottom: 0px
+}
+
+
+.textB,
+.dadosepsp {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+#lastepview {
+  opacity: 0.6
+}
+
+
+.barra button {
+  border: none;
+  padding: 5px 10px;
+  background: var(--headC);
+  border-radius: 50%;
+  color: var(--linkC);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer
+}
+
+.barra button:before {
+  content: "\e836";
+  opacity: 0.6;
+  font-size: 2em;
+  font-family: 'Material Symbols Outlined'
+}
+
+
+.textB button {
+  pointer-events: none
+}
+
+.textB button:before {
+  content: "\e70d";
+  font-family: 'Material Symbols Outlined'
+}
+
+
+
+#secep.studo:before {
+  content: "\e5ca"
+}
+
+#secep.studo {
+  background: var(--cor1)
+}
+
+
+
+
+.trailerA {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 12;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer
+}
+
+.trailerA:before {
+  content: "";
+  background: var(--contentB);
+  opacity: 0.8;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.trailerA.ativo {
+  display: flex
+}
+
+.trailerA iframe {
+  width: 480px;
+  height: 320px;
+  border-radius: 20px;
+  z-index: 1;
+
+}
+
+.temporadas {
+  padding: 10px 100px 10px 100px;
+  font-family: var(--fontH);
+  max-width: 70%;
+}
+
+.dadospesquisa {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 20px;
+}
+
+.dadospesquisa input {
+  padding: 10px 60px 10px 30px;
+  border-radius: 999px;
+  border: none;
+  outline: none;
+  background: var(--contentB);
+  color: white;
+  margin-left: auto;
+}
+
+.dadospesquisa input::placeholder {
+  color: rgba(255, 255, 255, 0.5)
+}
+
+#scrollLeft,
+#scrollRight {
+  cursor: pointer;
+  border-radius: 999px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--linkC);
+  border: none;
+  margin: 0;
+  font-size: 0.7em;
+  opacity: 0.6
+}
+
+#scrollLeft:hover,
+#scrollRight:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#scrollLeft:before {
+  content: "\e5e0";
+  font-family: 'Material Symbols Outlined'
+}
+
+#scrollRight:before {
+  content: "\e5e1";
+  font-family: 'Material Symbols Outlined'
+}
+
+#scrollLeft {
+  margin-right: 5px
+}
+
+#scrollRight {
+  margin-left: 5px;
+  margin-right: auto
+}
+
+.listtemporadas div{
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.listtemporadas::-webkit-scrollbar {
+  display: none
+}
+
+.listtemporadas span {
+  border-radius: 5px;
+  padding: 5px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--linkC);
+  cursor: pointer;
+  font-size: 0.8em;
+}
+
+.listtemporadas span:hover:not(.listtemporadas span.clicked) {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.listtemporadas span.clicked {
+  background: var(--linkB);
+  border: 1px solid rgba(255, 255, 255, 0);
+  color: var(--linkA);
+  font-weight: 700
+}
+
+.listtemporadas .movieB.clicked:before {
+  display: none
+}
+
+.listtemporadas span.clicked:before {
+  content: "Temporada";
+  margin-right: 10px
+}
+
+.listeps {
+  display: none;
+  gap: 20px;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.listeps.active {
+  display: grid;
+}
+
+
+
+
+#season-filmes .episodio img {
+  max-height: 90%;
+  min-height: unset
+}
+
+
+.episodio {
+  border-radius: 15px;
+  width: auto;
+  text-align: center;
+  background: var(--contentB);
+  text-decoration: none;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: var(--linkC);
+  overflow: hidden;
+  position: relative;
+  padding: 10px;
+  height: auto;
+  user-select: none;
+  cursor: pointer
+}
+
+
+.episodio:hover img {
+  transform: scale(1.2)
+}
+
+#season-filmes .episodio:hover {
+  padding: 10px
+}
+
+#season-filmes .episodio:hover a {
+  border-radius: unset;
+  margin-bottom: unset
+}
+
+
+.episodio a {
+  width: 100%;
+  height: 120px;
+  margin-bottom: 5px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  border-radius: 10px;
+  align-items: center;
+  overflow: hidden;
+}
+
+
+.episodio a:before {
+  position: absolute;
+  font-family: 'Material Symbols Outlined';
+  content: "\e037";
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--linkC);
+  font-size: 1.5em;
+  z-index: 2
+}
+
+.episodio img {
+  width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s
+}
+
+
+.episodio a h8 {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: var(--linkB);
+  color: var(--linkA);
+  font-weight: 800;
+  padding: 2px 10px;
+  line-height: normal;
+  border-radius: 4px;
+  font-size: 10px
+}
+
+
+.epNN {
+  font-size: 20px;
+  color: var(--linkC);
+  position: relative;
+  width: calc(100% - 20px);
+  font-weight: 700
+}
+
+.epNN:after {
+  content: attr(data-text);
+  margin-left: 5px
+}
+.epNN:before {
+  content: "Episódio";
+  margin-right: 5px
+}
+
+.seasonN {
+  display: block;
+  opacity: 0.6;
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+  line-height: normal;
+}
+
+.seasonN:before {
+  content: "Temporada";
+  margin-right: 5px
+}
+
+
+.item {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.item h8,
+.item button {
+  font-size: 12px;
+  color: var(--linkC);
+  opacity: 0.6;
+  line-height: normal;
+  display: inline-block;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 20px;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.item h8 {
+  padding: 5px 10px;
+  margin-left: auto;
+  background: rgb(116, 111, 111, 0.2);
+}
+
+
+
+.view {
+  display: flex !important;
+  align-items: center !important;
+  background: var(--linkD);
+  cursor: pointer
+}
+
+.view:before {
+  content: "\e8f5";
+  font-family: 'Material Symbols Outlined';
+  font-size: 1.2em;
+  margin-right: 5px
+}
+
+.view:after {
+  content: "Não visto";
+  font-weight: 600
+}
+
+.vieweP.visto .view {
+  background: var(--cor1);
+  color: var(--bodyB)
+}
+
+
+.vieweP.visto .view:after {
+  content: "Assistido";
+}
+
+
+.vieweP.visto .view:before {
+  content: "\e2e6";
+}
+
+
+
+
+
+
+h8,
+h6 {
+  margin: 0
+}
+
+@media screen and (min-width: 1100px) {
+  .capa {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .temporadas {
+    width: 100%
+  }
+}
+
+/*h1,h2,h3,h4,h5,h6,h7,h8,h9{margin:0!important; padding:0!important}*/
