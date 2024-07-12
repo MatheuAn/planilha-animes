@@ -1,54 +1,109 @@
-
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+/>
 
 <main class="video-container">
+  <span id="brilho"></span>
   <div class="controlsplayer">
-    <span class="poster" >
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigUZ-1KLADVQC8WcAuVOCtkR3K2Q395Nw_DcHJgoBUEJZe6WWElzMy9iWzfgiXpCDSoQz4dKMcxUunzeRqRsKDUli9jLGipbY7msl_atRg0mFbV5Zv0AkfjQoIXLU1geXzvJFS3Cpf0auJsuv3n6ptxkUvbcmQkFRK2AKjVN0lfPW49qfz7wQI8PW0F04/s1600/wepik-modern-simple-anime-festival-halfpage-banner-20240708022143AF0V.png"> 
+    <button id="pOP" data-time="2s">Pular Opening</button>
+
+    <div class="container">
+      <span class="percentage" id="percentage">100%</span>
+      <div class="brilhop" id="brilhop">
+        <div id="barbr"></div>
+        <div id="handle"></div>
+      </div>
+      <span class="icbr"></span>
+    </div>
+
+    <div class="volubar">
+      <span id="volnumb">100%</span>
+      <div class="vol" id="vol">
+        <div id="barvol"></div>
+        <div id="handlevol"></div>
+      </div>
+      <h8 class="icvol"></h8>
+    </div>
+
+    <span class="poster">
+      <img
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigUZ-1KLADVQC8WcAuVOCtkR3K2Q395Nw_DcHJgoBUEJZe6WWElzMy9iWzfgiXpCDSoQz4dKMcxUunzeRqRsKDUli9jLGipbY7msl_atRg0mFbV5Zv0AkfjQoIXLU1geXzvJFS3Cpf0auJsuv3n6ptxkUvbcmQkFRK2AKjVN0lfPW49qfz7wQI8PW0F04/s1600/wepik-modern-simple-anime-festival-halfpage-banner-20240708022143AF0V.png"
+      />
     </span>
     <div class="viewmode">
       <div>
         <p>QUALIDADES</p>
-        <button class="quality 1080p" data-source="https://betterserver.ga/playlist/K/ZJ5bk3O8SI/yW514cyOh8/k2vrFVNrup/riAQ60PkkO/riAQ60PkkO.m3u8">1080p</button>
-        <button class="quality 720p" data-source="https://betterserver.ga/playlist/I/YUDch5ERWG/WqDegpim3d/whK7UYCBcd/7ge2RobYIs/7ge2RobYIs.m3u8">720p</button>
-        <button class="quality 480p" data-source="https://betterserver.ga/playlist/O/Ze07e5rOyz/mCFH0PhDSc/jYQmGppn19/N3hK2gH67M/N3hK2gH67M.m3u8">480p</button>
-      <p class="comandos">COMANDOS</p>
-      <span data-source="Avança o tempo">DUPLO CLIQUE</span>
-      <span data-source="Retrocede o tempo">SETA ESQUERDA</span>
-      <span data-source="Avança o tempo">SETA DIREITA</span>
-      <span data-source="Play/ Pausa">SPACE</span>
-      <span data-source="Pular abertura">P</span>
-      <span data-source="Reinicia video">Q</span>
-      <span data-source="Tela cheia">F</span>
-      <span data-source="Opções">O</span>
+        <button
+          class="quality 1080p"
+          data-source="https://betterserver.ga/playlist/K/ZJ5bk3O8SI/yW514cyOh8/k2vrFVNrup/riAQ60PkkO/riAQ60PkkO.m3u8"
+        >
+          1080p
+        </button>
+        <button
+          class="quality 720p"
+          data-source="https://betterserver.ga/playlist/I/YUDch5ERWG/WqDegpim3d/whK7UYCBcd/7ge2RobYIs/7ge2RobYIs.m3u8"
+        >
+          720p
+        </button>
+        <button
+          class="quality 480p"
+          data-source="https://betterserver.ga/playlist/O/Ze07e5rOyz/mCFH0PhDSc/jYQmGppn19/N3hK2gH67M/N3hK2gH67M.m3u8"
+        >
+          480p
+        </button>
+        <p class="comandos">COMANDOS</p>
+        <span data-source="Avança o tempo">DUPLO CLIQUE</span>
+        <span data-source="Retrocede o tempo">SETA ESQUERDA</span>
+        <span data-source="Avança o tempo">SETA DIREITA</span>
+        <span data-source="Menos volume">SETA BAIXO</span>
+        <span data-source="Mais volume">SETA CIMA</span>
+        <span data-source="Play/ Pausa">SPACE</span>
+        <span data-source="Aumenta/ Diminui brilho">1 e 0</span>
+        <span data-source="Audio mudo">M</span>
+        <span data-source="Pular abertura">P</span>
+        <span data-source="Reinicia video">Q</span>
+        <span data-source="Tela cheia">F</span>
+        <span data-source="Opções">O</span>
+        <span data-source="Bloquear tela">B</span>
       </div>
     </div>
 
     <span class="topp">
+      <span class="logotl">
+        <img
+          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBcYTYVvLRTJH0XA9Oij2vV0H-zUJNdF6o0Gjakrl9qwC2FQpLlMMKCj5guQVZ0Ogkq0DjCSbnhACDgTkHuPu8tCscJvtVzOS6rJXBYTU_mCLckUwsc8Ju_Axwsd0lbfUtc_6NL0W1cZ9CA4EMxOAfVmY7vo7qfPWqI63ayqSm0i64d35idwSeo5aI9TY/s1600/2-removebg.png"
+        />
+      </span>
       <p>
         Titulo AnimeTitulo AnimeTitulo AnimeTitulo AnimeTitulo AnimeTitulo
-        AnimeTitulo AnimeTitulo AnimeTitulo AnimeTitulo AnimeTitulo
-        AnimeTitulo AnimeTitulo AnimeTitulo Anime
+        AnimeTitulo AnimeTitulo AnimeTitulo AnimeTitulo AnimeTitulo AnimeTitulo
+        AnimeTitulo AnimeTitulo Anime
       </p>
+
       <button id="pular"></button>
       <button id="more"></button>
+      <button id="block"></button>
     </span>
-    
+
     <span class="medp">
       <button id="lefttime"></button>
       <button id="playpause"></button>
       <button id="righttime"></button>
     </span>
 
-    <span class="endp">
-      <h2 id="currentTime">00:00</h2> 
-      <input id="progress" type="range" min="0" max="100" value="0" step="0.01"/>
-      <h2 id="totalTime"></h2>
+    <span class="endp timeline">
+      <h2 class="current-time">00:00</h2>
+      <div class="progress" id="progress">
+        <div id="bar"></div>
+        <div class="handletimeline" id="handletimeline"></div>
+      </div>
+      <h2 class="total-time"></h2>
     </span>
 
-    <span class="progress">
-      <a href="" class="download"></a>
+    <span class="progressline">
+      <button class="download"></button>
       <button id="volume"></button>
       <button class="velocidade speed-btn">1x</button>
       <button id="reiniciar"></button>
@@ -59,863 +114,5 @@
   <video id="video" class="1080p video" src=""></video>
 </main>
 
-<script>
-
-var video = document.getElementById("video");
-var playpauseButton = document.getElementById('playpause');
-var videoContainer = document.querySelector('.video-container');
-var timeoutId = null;
-var reiniciarButton = document.getElementById('reiniciar');
-var totalTimeDisplay = document.getElementById('totalTime');
-var currentTimeDisplay = document.getElementById('currentTime');
-var lefttimeButton = document.getElementById('lefttime');
-var righttimeButton = document.getElementById('righttime');
-var progress = document.getElementById('progress');
-var fullScreenBtn = document.querySelector(".full-screen-btn");
-var poster = document.querySelector('.poster');
-var pularButton = document.getElementById('pular');
-var buttons = document.querySelectorAll(".quality");
-var currentSource = null; 
-var currentTimeBackup = 0; 
-
-var controlsPlayer = document.querySelector('.controlsplayer');
-var inactivityTimeout; // Variável para armazenar o timeout
-var isFirstPlay = true; // Variável para controlar se o primeiro play já aconteceu
-
-function addOffModeClass() {
-    if (!isFirstPlay) {
-        controlsPlayer.classList.add('offmode');
-    }
-}
-
-function removeOffModeClass() {
-    controlsPlayer.classList.remove('offmode');
-}
-
-// Função para reiniciar o temporizador
-function resetInactivityTimer() {
-    clearTimeout(inactivityTimeout);
-    inactivityTimeout = setTimeout(addOffModeClass, 5000); // 3000 milissegundos (3 segundos) de inatividade
-}
-
-// Função para remover a classe .offmode quando houver atividade
-function handleActivity() {
-    if (!isFirstPlay && controlsPlayer.classList.contains('offmode')) {
-        removeOffModeClass();
-    }
-    resetInactivityTimer();
-}
-
-// Event listeners para detectar interações do usuário
-document.addEventListener('mousemove', handleActivity);
-document.addEventListener('mousedown', handleActivity);
-document.addEventListener('keydown', handleActivity);
-
-// Inicialmente, remove a classe .offmode
-removeOffModeClass();
-
-// Monitora eventos dentro de .controlsplayer para resetar o temporizador
-controlsPlayer.addEventListener('mousemove', handleActivity);
-controlsPlayer.addEventListener('mousedown', handleActivity);
-controlsPlayer.addEventListener('keydown', handleActivity);
-
-
-// Qualidades
-var moreButton = document.getElementById('more');
-var viewModeElement = document.querySelector('.viewmode');
-
-// Adiciona um evento de clique ao #more
-moreButton.addEventListener('click', function() {
-  // Adiciona a classe .m ao .viewmode
-  viewModeElement.classList.add('m');
-});
-
-// Adiciona um evento de clique ao .viewmode
-viewModeElement.addEventListener('click', function(event) {
-  // Verifica se o clique ocorreu diretamente no .viewmode ou em um filho (excluindo <span>)
-  if (event.target === viewModeElement) {
-    viewModeElement.classList.remove('m');
-  }
-});
-
-// Adiciona um evento de teclado para a tecla "O"
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'o' || event.key === 'O') {
-    viewModeElement.classList.toggle('m');
-  }
-});
-
-
-
-// reiniciar video
-reiniciarButton.addEventListener('click', function() {
-video.currentTime = 0;
-video.pause();
-video.play();
-});
-
-document.addEventListener('keydown', function(event) {
-if (event.key === 'q' || event.key === 'Q') {
-  reiniciarButton.click();
-}
-});
-
-
-// velocidade do video
-const speedBtn = document.querySelector(".speed-btn")
-speedBtn.addEventListener("click", changePlaybackSpeed)
-function changePlaybackSpeed() {
-let newPlaybackRate = video.playbackRate + 0.25
-if (newPlaybackRate > 2) newPlaybackRate = 0.25
-video.playbackRate = newPlaybackRate
-speedBtn.textContent = `${newPlaybackRate}x`
-}
-
-
-
-
-// Pular abertura
-pularButton.addEventListener('click', function() {
-pularButton.classList.add('p');
-setTimeout(function() {
-  pularButton.classList.remove('p');
-}, 300);
-pular();
-});
-
-document.addEventListener('keydown', function(event) {
-if (event.key === 'p' || event.key === 'P') {
-  pularButton.classList.add('p');
-  setTimeout(function() {
-      pularButton.classList.remove('p');
-  }, 300);
-  pular();
-}
-});
-
-function pular() {
-var currentTime = video.currentTime;
-var novoTempo = currentTime + 85;
-if (novoTempo <= video.duration) {
-  video.currentTime = novoTempo;
-} else {
-  video.currentTime = video.duration;
-}
-}
-
-// Controle de tela cheia via botão
-fullScreenBtn.addEventListener("click", toggleFullScreenMode);
-
-document.addEventListener("keydown", function(event) {
-if (event.key === 'f' || event.key === 'F') {
-  toggleFullScreenMode();
-}
-});
-
-function toggleFullScreenMode() {
-if (!document.fullscreenElement) {
-  videoContainer.requestFullscreen();
-} else {
-  document.exitFullscreen();
-}
-}
-
-document.addEventListener("fullscreenchange", () => {
-if (document.fullscreenElement) {
-  videoContainer.classList.add("full-screen");
-  videoContainer.style.width = "100vw";
-  videoContainer.style.height = "100vh";
-} else {
-  videoContainer.classList.remove("full-screen");
-  videoContainer.style.width = null;
-  videoContainer.style.height = null;
-}
-});
-
-// timwline
-progress.value = 0;
-
-video.addEventListener('timeupdate', function() {
-var currentTime = formatTime(video.currentTime);
-var duration = formatTime(video.duration);
-currentTimeDisplay.textContent = currentTime;
-totalTimeDisplay.textContent = duration;
-
-var progressValue = (video.currentTime / video.duration) * 100;
-progress.value = progressValue;
-});
-function formatTime(time) {
-var minutes = Math.floor(time / 60);
-var seconds = Math.floor(time % 60);
-return (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-}
-
-progress.addEventListener('input', function() {
-var seekTo = video.duration * (progress.value / 100);
-video.currentTime = seekTo;
-});
-
-progress.addEventListener('mouseup', function() {
-progress.blur(); 
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-progress.value = 0;
-});
-
-
-
-
-
-
-// Buttons para avançar/retornar tempo
-lefttimeButton.addEventListener('click', function() {
-    video.currentTime -= 10;
-});
-
-righttimeButton.addEventListener('click', function() {
-    video.currentTime += 10;
-});
-
-videoContainer.addEventListener('dblclick', function(event) {
-    var clickedElement = event.target;
-
-    // Verifica se o clique foi em um elemento que não deve ativar o duplo clique
-    if (clickedElement.tagName !== 'BUTTON' && !clickedElement.closest('button')) {
-        var containerWidth = videoContainer.offsetWidth;
-        var clickX = event.clientX - videoContainer.getBoundingClientRect().left;
-
-        if (clickX < containerWidth / 2) { // Clique na parte esquerda do container
-            videoContainer.classList.add('leftt');
-            videoContainer.classList.remove('rightt');
-            lefttimeButton.click();
-        } else { // Clique na parte direita do container
-            videoContainer.classList.add('rightt');
-            videoContainer.classList.remove('leftt');
-            righttimeButton.click();
-        }
-
-        clearTimeout(timeoutId);
-
-        timeoutId = setTimeout(function() {
-            videoContainer.classList.remove('leftt', 'rightt');
-        }, 300);
-    }
-});
-
-document.addEventListener('keydown', function(event) {
-    clearTimeout(timeoutId);
-
-    if (event.target.tagName !== 'BUTTON' && !event.target.closest('button')) {
-        if (event.keyCode === 37) { 
-            lefttimeButton.click();
-            videoContainer.classList.add('leftt');
-            timeoutId = setTimeout(function() {
-                videoContainer.classList.remove('leftt');
-            }, 300);
-        } else if (event.keyCode === 39) {
-            righttimeButton.click();
-            videoContainer.classList.add('rightt');
-            timeoutId = setTimeout(function() {
-                videoContainer.classList.remove('rightt');
-            }, 300);
-        }
-    }
-});
-
-// Variável para controlar o primeiro play
-var isFirstPlay = true;
-
-// Função para adicionar a classe .v aos elementos quando ocorrer o primeiro play
-function addVClassOnFirstPlay() {
-    if (isFirstPlay) {
-        document.querySelector('.topp').classList.add('v');
-        document.querySelector('.endp').classList.add('v');
-        document.querySelector('.progress').classList.add('v');
-        document.getElementById('lefttime').classList.add('v');
-        document.getElementById('righttime').classList.add('v');
-        isFirstPlay = false; // Marca que o primeiro play já aconteceu
-    }
-}
-
-// Play e Pause
-playpauseButton.addEventListener('click', function() {
-    if (video.paused || video.ended) {
-        video.play();
-        playpauseButton.classList.add('pause');
-        poster.style.display = 'none'; // Oculta o poster ao iniciar a reprodução
-        addVClassOnFirstPlay(); // Adiciona a classe .v quando ocorre o primeiro play
-        isFirstPlay = false; // Marca que o primeiro play já aconteceu
-        removeOffModeClass(); // Remove .offmode ao iniciar o primeiro play
-    } else {
-        video.pause();
-        playpauseButton.classList.remove('pause');
-    }
-});
-
-video.addEventListener('play', function() {
-    playpauseButton.classList.add('pause');
-    poster.style.display = 'none';
-    addVClassOnFirstPlay(); // Adiciona a classe .v quando ocorre o primeiro play
-});
-
-video.addEventListener('pause', function() {
-    playpauseButton.classList.remove('pause');
-});
-
-  
-video.addEventListener('play', function() {
-    playpauseButton.classList.add('pause');
-    poster.style.display = 'none'; 
-});
-
-video.addEventListener('pause', function() {
-    playpauseButton.classList.remove('pause');
-});
-
-
-  
-  
-  
-  
-// Adiciona a funcionalidade de play/pause usando a tecla Space
-document.addEventListener('keydown', function(event) {
-    if (event.keyCode === 32) { // Tecla Space
-        event.preventDefault(); // Previne a ação padrão da tecla (ex: scroll down)
-        if (video.paused || video.ended) {
-            video.play();
-            playpauseButton.classList.add('pause');
-            poster.style.display = 'none'; // Oculta o poster ao iniciar a reprodução
-            addVClassOnFirstPlay(); // Adiciona a classe .v quando ocorre o primeiro play
-        } else {
-            video.pause();
-            playpauseButton.classList.remove('pause');
-        }
-    }
-});
-// Seleciona elementos relevantes
-var video = document.getElementById('video');
-var buttons = document.querySelectorAll('.quality');
-var downloadLink = document.querySelector('.download');
-var currentSource = null;
-var currentTimeBackup = 0;
-
-// Função para carregar o vídeo com o data-source especificado
-function loadVideo(sourceUrl) {
-  if (!sourceUrl) {
-    // Se o data-source estiver vazio, tenta encontrar o próximo botão com data-source
-    var nextButton = findNextButtonWithSource();
-    if (nextButton) {
-      sourceUrl = nextButton.getAttribute("data-source");
-    }
-  }
-
-  if (currentSource && currentSource !== sourceUrl) {
-    currentTimeBackup = video.currentTime;
-  }
-
-  video.src = sourceUrl;
-  currentSource = sourceUrl;
-
-  buttons.forEach((button) => {
-    if (button.getAttribute("data-source") === sourceUrl) {
-      button.classList.add("p");
-      downloadLink.href = sourceUrl; // Define o href do link de download
-
-      // Remove classes p1, p2, p3 da .download antes de adicionar a nova classe
-      downloadLink.classList.remove("p1", "p2", "p3");
-      
-      // Adiciona a classe específica de qualidade ao link de download
-      var qualityClass = button.classList[1]; // Assume que a segunda classe é a classe de qualidade (1080p, 720p, 480p)
-      downloadLink.classList.add("p" + qualityClass.substr(1)); // Adiciona p1, p2, p3 dependendo da qualidade
-
-    } else {
-      button.classList.remove("p");
-    }
-
-    // Oculta o botão se não tiver data-source
-    if (button.getAttribute("data-source") === "") {
-      button.style.display = "none";
-    } else {
-      button.style.display = "inline-block"; // Garante que os botões visíveis tenham display correto
-    }
-  });
-
-  if (Hls.isSupported() && sourceUrl.endsWith(".m3u8")) {
-    var hls = new Hls();
-    hls.loadSource(sourceUrl);
-    hls.attachMedia(video);
-
-    hls.on(Hls.Events.MANIFEST_PARSED, function () {
-      if (currentTimeBackup > 0) {
-        video.currentTime = currentTimeBackup;
-        currentTimeBackup = 0;
-      }
-      video.play();
-    });
-  } else {
-    video.addEventListener("loadedmetadata", function () {
-      if (currentTimeBackup > 0) {
-        video.currentTime = currentTimeBackup;
-        currentTimeBackup = 0;
-      }
-      video.play();
-    });
-  }
-}
-
-// Função para encontrar o próximo botão com data-source
-function findNextButtonWithSource() {
-  var foundNext = false;
-  for (var i = 0; i < buttons.length - 1; i++) {
-    if (buttons[i].getAttribute("data-source") === "" && buttons[i + 1].getAttribute("data-source") !== "") {
-      foundNext = true;
-      return buttons[i + 1];
-    }
-  }
-  return null;
-}
-
-// Verifica se há botões para inicializar o vídeo
-if (buttons.length > 0) {
-  var firstButton = buttons[0];
-  var sourceUrl = firstButton.getAttribute("data-source");
-  loadVideo(sourceUrl);
-}
-
-// Adiciona eventos de clique aos botões
-buttons.forEach((button) => {
-  button.addEventListener("click", function () {
-    var sourceUrl = this.getAttribute("data-source");
-    loadVideo(sourceUrl);
-  });
-});
-
-  
-</script>
-<style>
-  
-body {
-  margin:0
-}
-input[type="range"] {
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Não selecionável */
-  -webkit-touch-callout: none; /* Safari para iOS */
-}
-input[type="range"]:focus {
-  outline: none; /* Remove a borda de foco */
-}
-
-button:focus {
-  outline: none;
-}
-
-.video-container {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  color: white;
-  margin: 0;
-  padding: 0;overflow:hidden;
-  cursor: pointer;user-select: none;
-}
-.video-container.rightt:before,
-.video-container.leftt:before {
-  background: rgba(255, 255, 255, 0.03);
-  position: absolute;
-  content: "";
-  left: 0;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  z-index: 2;
-}
-.video-container.rightt:before {
-  left: unset;
-  right: 0;
-}
-
-#video {
-  height: 100%;
-  width: 100%;
-  object-fit:fill;
-}
-.controlsplayer {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  left: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 25px 40px;
-  box-sizing: border-box;
-  z-index: 1;
-}
-
-.poster {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-}
-
-.poster img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-
-.poster.hidden {
-  display: none;
-}
-
-.viewmode {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(17, 17, 17, 0.95);
-  display: none;
-  transition: flex 1s;
-  z-index:3;
-  opacity:0
-}
-
-.viewmode.m{
-  display: flex;
-  opacity:1
-}
-.viewmode div{
-width:400px;
-height:100%;
-background:#101118;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 40px;
- transform: translateX(-100vh);
-  box-sizing: border-box;
-  animation: slideIn 1s forwards;
-}
-
-    @keyframes slideIn {
-      0% {
-        transform: translateX(-100%);
-      }
-      100% {
-        transform: translateX(0);
-      }
-    }
-    .viewmode p{
-      margin:0
-    }
-.viewmode button {
-  border-radius: 5px;
-  border: none;
-  font-size: 19px !important;
-  padding:10px;
-  background:#13141c;
-  color: white
-}
-
-.viewmode button.p {
-  background-color:#fac919; /* Cor de fundo para indicar seleção ativa */
-}
-.viewmode button:nth-child(2).p {
-  background-color:#0d66ac;/* Cor de fundo para indicar seleção ativa */
-}
-.viewmode button:nth-child(3).p {
-  background-color: #089949/* Cor de fundo para indicar seleção ativa */
-}
-
-
-.comandos {
-  margin-top:20px!important
-}
-
-.viewmode span{
-  border-radius: 5px;
-  padding:10px;
-  box-sizing: border-box;
-  background:#13141c;
-  font-size:12px;
-  opacity:0.6;
-  display: flex
-}
-
-.viewmode span:after {
-  content: attr(data-source);
-  margin-left: auto;
-}
-.full-screen .viewmode span{
-  font-size:1em!important;
-}
-
-
-.topp {
-  justify-content: right;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.topp p {
-  margin: 0;
-  margin-right: auto;
-  font-size: 2em;
-  padding: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-  max-width: 60%;
-  align-items: center;
-  -webkit-box-orient: vertical;
-}
-
-.full-screen .topp p {
-  font-size: 3em;
-}
-
-.topp p:before {
-  content: "\e5cc";
-  font-family: "Material Symbols Outlined";
-  margin-right: 10px;
-}
-
-.topp button {
-  color: white;
-  font-size: 1.2em;
-  padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  align-items: center;
-  display: flex;
-}
-#pular:before {
-  content: "\e044";
-  font-family: "Material Symbols Outlined";
-  margin-right: 10px;
-}
-#pular:after {
-  content: "Pular Abertura";
-  opacity: 0.6;
-}
-#pular:active {
-  background: rgba(255, 255, 255, 0.02);
-}
-#pular.p:after {
-  content: "Avançou o video...";
-}
-#more:before {
-  content: "\e018";
-  font-family: 'Material Symbols Outlined';
-}
-
-.medp {
-  margin-top: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 80px;
-}
-.medp button {
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  height: 90px;
-  width: 90px;
-  font-size: 5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: font-size 0.3s;
-}
-#playpause {
-  font-size: 7.5em;
-}
-#playpause:before {
-  content: "\e037";
-  font-family: "Material Symbols Outlined";
-}
-#playpause.pause:before {
-  content: "\e034";
-}
-
-#lefttime:before {
-  content: "\e059";
-  font-family: "Material Symbols Outlined";
-}
-#righttime:before {
-  content: "\e056";
-  font-family: "Material Symbols Outlined";
-}
-
-#lefttime:hover,
-#righttime:hover {
-  background: rgba(255, 255, 255, 0.04);
-}
-#lefttime:active,
-#righttime:active {
-  font-size: 6.5em;
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.full-screen .medp {
-  gap:120px
-}
-
-.full-screen .medp button {
-  height: 120px;
-  width: 120px;
-}
-.full-screen #playpause {
-  font-size: 9.5em;
-}
-.full-screen #lefttime,
-.full-screen #righttime{
-  font-size: 7em;
-}
-.full-screen  #lefttime:active,
-.full-screen  #righttime:active {
-  font-size: 10em;
-}
-
-
-#playpause {
-  height: 150px;
-  width: 150px;
-}
-
-.endp {
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  justify-content: space-between;
-}
-.endp input {
-  width: 100%;
-  height: 2px;
-  border-radius: 10px;
-  margin-right: 10px;
-}
-.endp h2 {
-  font-size: 1.2em;
-}
-
-.progress {
-  margin-top: 20px;
-  display: flex;
-  gap: 40px;
-}
-
-.progress button {
-  height: 60px;
-  width: 60px;
-  background: none;
-  border: none;
-  color: white;
-  background: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5em;
-  border-radius: 10px;
-  padding: 5px;
-}
-.progress button:hover {
-  background: rgba(255, 255, 255, 0.02);
-}
-.download{
-  width:unset;
-  font-size:2em;
-  text-decoration: none;
-  color: white;
-  display: flex; align-items: center;
-}
-.download:before {
-  content: "\e052";
-  font-family: "Material Symbols Outlined";
-  margin-right: 10px;
-  font-size: 1.5em;
-}
-
-.p1080p {
-  color:  #0d66ac;
-}
-.p1080p:after {
- content:"1080p"
-}
-.p720p {
-  color: #089949;
-}
-.p720p:after {
- content:"720p"
-}
-.p480p {
-  color:#fac919;
-}
-.p480p:after {
-  content:"480p"
- }
-.velocidade{
-  width:auto!important
-}
-
-#volume:before {
-  content: "\e050";
-  font-family: "Material Symbols Outlined";
-}
-#volume.muted:before {
-  content: "\e04f";
-}
-
-#reiniciar {
-  margin-left: auto;
-}
-#reiniciar:before {
-  content: "\f053";
-  font-family: "Material Symbols Outlined";
-}
-#fullcontrols:before {
-  content: "\e5d0";
-  font-family: "Material Symbols Outlined";
-}
-
-.controlsplayer.offmode,
-.topp,
-.endp,
-.progress,
-#lefttime,
-#righttime{
-  opacity:0; 
-  pointer-events: none
-}
-.topp.v,
-.endp.v,
-.progress.v,
-#lefttime.v,
-#righttime.v{
-  opacity:unset!important; 
-  pointer-events: unset;  
-}
-  
-
-h2 {
-  margin: 0;
-  font-weight: 400;
-}
-
-</style>
+<script src="\playpage\script.js"></script>
+<link rel="stylesheet" href="\playpage\style.css" />
