@@ -1,423 +1,615 @@
 
 body {
-  margin:0
-}
-input[type="range"] {
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Não selecionável */
-  -webkit-touch-callout: none; /* Safari para iOS */
-}
-input[type="range"]:focus {
-  outline: none; /* Remove a borda de foco */
-}
-
-button:focus {
-  outline: none;
-}
-
-.video-container {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  color: white;
-  margin: 0;
-  padding: 0;overflow:hidden;
-  cursor: pointer;user-select: none;
-}
-.video-container.rightt:before,
-.video-container.leftt:before {
-  background: rgba(255, 255, 255, 0.03);
-  position: absolute;
-  content: "";
-  left: 0;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  z-index: 2;
-}
-.video-container.rightt:before {
-  left: unset;
-  right: 0;
-}
-
-#video {
-  height: 100%;
-  width: 100%;
-  object-fit:fill;
-}
-.controlsplayer {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  left: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 25px 40px;
-  box-sizing: border-box;
-  z-index: 1;
-}
-
-.poster {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-}
-
-.poster img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-
-.poster.hidden {
-  display: none;
-}
-
-.viewmode {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(17, 17, 17, 0.95);
-  display: none;
-  transition: flex 1s;
-  z-index:3;
-  opacity:0
-}
-
-.viewmode.m{
-  display: flex;
-  opacity:1
-}
-.viewmode div{
-width:400px;
-height:100%;
-background:#101118;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 40px;
- transform: translateX(-100vh);
-  box-sizing: border-box;
-  animation: slideIn 1s forwards;
-}
-
-    @keyframes slideIn {
-      0% {
-        transform: translateX(-100%);
+    margin:0;
+    background: black
+  }
+  button:focus {
+    outline: none;
+  }
+  
+  .video-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    color: white;
+    margin: 0;
+    padding: 0;overflow:hidden;
+    cursor: pointer;user-select: none;
+  }
+  .video-container.rightt:before,
+  .video-container.leftt:before {
+    background: rgba(255, 255, 255, 0.03);
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    z-index: 2;
+  }
+  .video-container.rightt:before {
+    left: unset;
+    right: 0;
+  }
+  
+  
+  .video-container.leftt:after,
+  .video-container.rightt:after{
+      color:white;
+      font-size:5em;
+      opacity:0.6;
+      position: absolute;
+    top: 0;
+    width:50%;
+    height:100%;
+    z-index:2;
+    display: flex;
+    justify-content: center;
+    align-items: center
       }
-      100% {
-        transform: translateX(0);
-      }
-    }
-    .viewmode p{
-      margin:0
-    }
-.viewmode button {
-  border-radius: 5px;
-  border: none;
-  font-size: 19px !important;
-  padding:10px;
-  background:#13141c;
-  color: white
-}
-
-.viewmode button.p {
-  background-color:#fac919; /* Cor de fundo para indicar seleção ativa */
-}
-.viewmode button:nth-child(2).p {
-  background-color:#0d66ac;/* Cor de fundo para indicar seleção ativa */
-}
-.viewmode button:nth-child(3).p {
-  background-color: #089949/* Cor de fundo para indicar seleção ativa */
-}
+  
+  .video-container.rightt:after{
+      content:"+ 10s";
+      right: 0;
+  }
+  .video-container.leftt:after{
+      content:"- 10s";
+    left: 0;
+  }
+  
+  #video {
+    height: 100%;
+    width: 100%;
+    object-fit:fill;
+  }
 
 
-.comandos {
-  margin-top:20px!important
+  #brilho {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 0, 0, 0.432);
+    pointer-events: none;
+    opacity: 0; 
+    z-index:2;
+    transition: opacity 0.3s ease; 
 }
 
-.viewmode span{
-  border-radius: 5px;
-  padding:10px;
-  box-sizing: border-box;
-  background:#13141c;
-  font-size:12px;
-  opacity:0.6;
-  display: flex
-}
+  .controlsplayer {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 40px;
+    box-sizing: border-box;
+    z-index: 1;
+  }
 
-.viewmode span:after {
-  content: attr(data-source);
-  margin-left: auto;
-}
-.full-screen .viewmode span{
-  font-size:1em!important;
-}
+  .controlsplayer.offmode{
+    border:22px solid green
+  }
 
+  #pOP {
+    transition: right 1s ease;
+    position: absolute;
+    right:-200px;
+    bottom:150px;
+    padding:15px 30px;
+    border-radius:50px;
+    border: none;
+    background: rgba(76, 0, 255, 0.95);
+    color: white;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
 
-.topp {
-  justify-content: right;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.topp p {
-  margin: 0;
-  margin-right: auto;
-  font-size: 2em;
-  padding: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-  max-width: 60%;
-  align-items: center;
-  -webkit-box-orient: vertical;
-}
+  #pOP:after{
+    content:"\eac9";
+    margin-left:20px;
+    font-size:20px;
+    font-family:"Material Symbols Outlined"
+  }
 
-.full-screen .topp p {
-  font-size: 3em;
-}
-
-.topp p:before {
-  content: "\e5cc";
-  font-family: "Material Symbols Outlined";
-  margin-right: 10px;
-}
-
-.topp button {
-  color: white;
-  font-size: 1.2em;
-  padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  align-items: center;
-  display: flex;
-}
-#pular:before {
-  content: "\e044";
-  font-family: "Material Symbols Outlined";
-  margin-right: 10px;
-}
-#pular:after {
-  content: "Pular Abertura";
-  opacity: 0.6;
-}
-#pular:active {
-  background: rgba(255, 255, 255, 0.02);
-}
-#pular.p:after {
-  content: "Avançou o video...";
-}
-#more:before {
-  content: "\e018";
-  font-family: 'Material Symbols Outlined';
-}
-
-.medp {
-  margin-top: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 80px;
-}
-.medp button {
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  height: 90px;
-  width: 90px;
-  font-size: 5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: font-size 0.3s;
-}
-#playpause {
-  font-size: 7.5em;
-}
-#playpause:before {
-  content: "\e037";
-  font-family: "Material Symbols Outlined";
-}
-#playpause.pause:before {
-  content: "\e034";
-}
-
-#lefttime:before {
-  content: "\e059";
-  font-family: "Material Symbols Outlined";
-}
-#righttime:before {
-  content: "\e056";
-  font-family: "Material Symbols Outlined";
-}
-
-#lefttime:hover,
-#righttime:hover {
-  background: rgba(255, 255, 255, 0.04);
-}
-#lefttime:active,
-#righttime:active {
-  font-size: 6.5em;
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.full-screen .medp {
-  gap:120px
-}
-
-.full-screen .medp button {
-  height: 120px;
-  width: 120px;
-}
-.full-screen #playpause {
-  font-size: 9.5em;
-}
-.full-screen #lefttime,
-.full-screen #righttime{
-  font-size: 7em;
-}
-.full-screen  #lefttime:active,
-.full-screen  #righttime:active {
-  font-size: 10em;
-}
-
-
-#playpause {
-  height: 150px;
-  width: 150px;
-}
-
-.endp {
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  justify-content: space-between;
-}
-.endp input {
-  width: 100%;
-  height: 2px;
-  border-radius: 10px;
-  margin-right: 10px;
-}
-.endp h2 {
-  font-size: 1.2em;
-}
-
-.progress {
-  margin-top: 20px;
-  display: flex;
-  gap: 40px;
-}
-
-.progress button {
-  height: 60px;
-  width: 60px;
-  background: none;
-  border: none;
-  color: white;
-  background: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5em;
-  border-radius: 10px;
-  padding: 5px;
-}
-.progress button:hover {
-  background: rgba(255, 255, 255, 0.02);
-}
-.download{
-  width:unset;
-  font-size:2em;
-  text-decoration: none;
-  color: white;
-  display: flex; align-items: center;
-}
-.download:before {
-  content: "\e052";
-  font-family: "Material Symbols Outlined";
-  margin-right: 10px;
-  font-size: 1.5em;
-}
-
-.p1080p {
-  color:  #0d66ac;
-}
-.p1080p:after {
- content:"1080p"
-}
-.p720p {
-  color: #089949;
-}
-.p720p:after {
- content:"720p"
-}
-.p480p {
-  color:#fac919;
-}
-.p480p:after {
-  content:"480p"
- }
-.velocidade{
-  width:auto!important
-}
-
-#volume:before {
-  content: "\e050";
-  font-family: "Material Symbols Outlined";
-}
-#volume.muted:before {
-  content: "\e04f";
-}
-
-#reiniciar {
-  margin-left: auto;
-}
-#reiniciar:before {
-  content: "\f053";
-  font-family: "Material Symbols Outlined";
-}
-#fullcontrols:before {
-  content: "\e5d0";
-  font-family: "Material Symbols Outlined";
-}
-
-.controlsplayer.offmode,
-.topp,
-.endp,
-.progress,
-#lefttime,
-#righttime{
-  opacity:0; 
-  pointer-events: none
-}
-.topp.v,
-.endp.v,
-.progress.v,
-#lefttime.v,
-#righttime.v{
-  opacity:unset!important; 
-  pointer-events: unset;  
-}
+  
+  #pOP.show {
+    opacity: 1;
+    right:40px;
+  }
   
 
-h2 {
-  margin: 0;
-  font-weight: 400;
+
+
+
+  .volubar,
+  .container {
+    position: absolute !important;
+    height: auto;
+    width: 50px !important;
+    padding: 0 !important;
+    top: 20%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
+
+.volubar{
+  right:40px;
+}
+#volnumb,
+.percentage {
+    margin-bottom: 10px;
+}
+.vol,
+.brilhop {
+    width: 4px;
+    height: 400px;
+    background:rgb(110, 109, 109);
+    cursor: pointer;
+    border-radius: 50px;
+    position: relative;
+}
+#barbr,
+#barvol{
+    position: absolute !important;
+    bottom: 0!important;
+    left: -1px;
+    top:unset!important;
+    width: calc(100% + 2px)!important;
+    height: 100%;
+    background: white; 
+    border-radius: 50px;
+    z-index: 2;
+}
+#handlevol,
+#handle {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0;
+  width: 100% !important;
+  height: 100%;
+  background: none;
+  z-index: 2;
+}
+.icvol,
+.icbr{
+  margin-top:10px
+}
+
+.icbr:after{
+  content:"\e430";
+  font-size:2em;
+  font-family: "Material Symbols Outlined"
+}
+.icbr.zerob:after{
+content:"\eb76"
+}
+
+.icvol:after{
+  content:"\e405";
+  font-size:2em;
+  font-family: "Material Symbols Outlined"
+}
+.icvol.zerob:after{
+content:"\e440"
+}
+
+  .poster {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  
+  .poster.hidden {
+    display: none;
+  }
+  
+  .viewmode {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(17, 17, 17, 0.95);
+    display: none;
+    transition: flex 1s;
+    z-index:3;
+    opacity:0
+  }
+  
+  .viewmode.m{
+    display: flex;
+    opacity:1
+  }
+  .viewmode div{
+  width:400px;
+  height:100%;
+  background:#101118;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+   transform: translateX(-100vh);
+    box-sizing: border-box;
+    animation: slideIn 1s forwards;
+  }
+  
+      @keyframes slideIn {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+      .viewmode p{
+        margin:0
+      }
+  .viewmode button {
+    border-radius: 5px;
+    border: none;
+    font-size: 19px !important;
+    padding:10px;
+    background:#13141c;
+    color: white; 
+    cursor: pointer
+  }
+  
+  .viewmode button.p {
+    background-color:#fac919;
+  }
+  .viewmode button:nth-child(2).p {
+    background-color:#0d66ac;
+  }
+  .viewmode button:nth-child(3).p {
+    background-color: #089949
+  }
+  
+  
+  .comandos {
+    margin-top:20px!important
+  }
+  
+  .viewmode span{
+    border-radius: 5px;
+    padding:10px;
+    box-sizing: border-box;
+    background:#13141c;
+    font-size:12px;
+    opacity:0.6;
+    display: flex
+  }
+  
+  .viewmode span:after {
+    content: attr(data-source);
+    margin-left: auto;
+  }
+  .full-screen .viewmode span{
+    font-size:1em!important;
+  }
+  
+  
+  .topp {
+    justify-content: right;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .logotl{
+    align-items: center;
+    display: none;
+  }
+  .logotl img{
+    width:90px;
+    height:90px;
+    object-fit: cover;
+  }
+  .full-screen .logotl{
+    display: flex
+  }
+  .topp p {
+    margin: 0;
+    margin-right: auto;
+    font-size: 2em;
+    padding: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    max-width:60%;
+    pointer-events: none!important
+  }
+  
+  .full-screen .topp p {
+    font-size: 3em;
+  }
+  
+  .topp p:before {
+    content: "\e317";
+    font-family: "Material Symbols Outlined";
+    margin-right: 10px;
+    background: rgba(255,255,255,0.1);
+    padding:5px 10px;
+    font-size:0.7em!important;
+    display: inline-flex;
+    align-items: center;
+    border-radius:999px
+  }
+  .full-screen .topp p:before{
+    display: none
+  }
+  .topp button {
+    color: white;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    align-items: center;
+    display: flex;
+  }
+  #pular:before {
+    content: "\e044";
+    font-family: "Material Symbols Outlined";
+  }
+  
+  #pular:active {
+    background: rgba(255, 255, 255, 0.05);
+  } 
+  
+  .topp button:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+  
+  .full-screen .topp button{
+      font-size:2em
+  }
+  #block,
+  #more:before {
+    content: "\e018";
+    font-family: 'Material Symbols Outlined';
+  }
+
+  #block:before{
+    content:"\f656"
+  }
+  
+  #block.unlock{
+    background:rgb(206, 52, 5)
+  }
+  #block.unlock:before{
+    content:"\e897"
+  }
+  
+  .medp {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+  }
+  .medp button {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    height: 90px;
+    width: 90px;
+    font-size: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: font-size 0.3s;
+  }
+  #playpause {
+    font-size: 7.5em;
+  }
+  #playpause:before {
+    content: "\e037";
+    font-family: "Material Symbols Outlined";
+  }
+  #playpause.pause:before {
+    content: "\e034";
+  }
+  
+  #lefttime:before {
+    content: "\e059";
+    font-family: "Material Symbols Outlined";
+  }
+  #righttime:before {
+    content: "\e056";
+    font-family: "Material Symbols Outlined";
+  }
+  
+  #lefttime:hover,
+  #righttime:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+  #lefttime:active,
+  #righttime:active {
+    font-size: 6.5em;
+    background: rgba(255, 255, 255, 0.02);
+  }
+  
+  .full-screen .medp {
+    gap:120px
+  }
+  
+  .full-screen .medp button {
+    height: 120px;
+    width: 120px;
+  }
+  .full-screen #playpause {
+    font-size: 9.5em;
+  }
+  .full-screen #lefttime,
+  .full-screen #righttime{
+    font-size: 7em;
+  }
+  .full-screen  #lefttime:active,
+  .full-screen  #righttime:active {
+    font-size: 10em;
+  }
+  
+  
+  #playpause {
+    height: 150px;
+    width: 150px;
+  }
+  
+  .endp {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+  }
+  .container {
+    width: 200px; /* largura da barra de progresso */
+    position: relative;
+}
+.progress {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background-color: #ddd;
+}
+
+.progress #bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background:orange!important;
+}
+
+.handletimeline {
+  position: absolute;
+  width: 14px; 
+  height: 14px; 
+  background-color:white;
+  border:2px solid orange;
+  top: calc(100% - 10px);
+  transform: translateX(-50%);
+  border-radius:50%;
+  cursor: pointer;
+}
+  .endp h2 {
+    font-size: 1.2em;
+  }
+  
+  .progressline {
+    margin-top: 20px;
+    display: flex;
+    gap: 40px;
+  }
+  
+  .progressline button {
+    height: 60px;
+    width: 60px;
+    background: none;
+    border: none;
+    color: white;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    border-radius: 10px;
+    padding: 5px;
+  }
+  
+  .full-screen .progressline button{
+      font-size:2.5em
+  }
+  .progressline button:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .download{
+    width:unset;
+    font-size:2em;
+    text-decoration: none;
+    color: white;
+    padding:0!important; pointer-events: none!important;
+    display: flex; align-items: center;
+  }
+  .download:before {
+    content: "\e052";
+    font-family: "Material Symbols Outlined";
+    margin-right: 10px;
+    font-size: 1.5em;
+  }
+  
+  .velocidade{
+    width:auto!important;
+     padding: 5px 20px!important;
+  }
+  
+  #volume:before {
+    content: "\e050";
+    font-family: "Material Symbols Outlined";
+  }
+  #volume.vol:before {
+    content: "\e04f";
+  }
+  #volume.vol:after{
+    content:"Mudo";
+    margin-left:10px;
+  }
+  
+  #volume.vol{
+    width: auto!important;
+    padding:5px 20px!important;
+    color: red
+  }
+  
+  #reiniciar {
+    margin-left: auto;
+  }
+  #reiniciar:before {
+    content: "\f053";
+    font-family: "Material Symbols Outlined";
+  }
+  #fullcontrols:before {
+    content: "\e5d0";
+    font-family: "Material Symbols Outlined";
+  }
+  .full-screen #fullcontrols:before{
+      content: "\e5d1";
+  }
+
+  .topp p.unlock,
+  .logotl.unlock,
+  #pular.unlock,
+  .medp.unlock,
+  .endp.unlock,
+  .progressline.unlock{
+    opacity:0;
+    pointer-events: none;
+
+  }
+  
+  
+  h2 {
+    margin: 0;
+    font-weight: 400;
+  }
