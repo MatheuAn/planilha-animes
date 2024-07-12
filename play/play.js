@@ -4,85 +4,354 @@ var playpauseButton = document.getElementById('playpause');
 var videoContainer = document.querySelector('.video-container');
 var timeoutId = null;
 var reiniciarButton = document.getElementById('reiniciar');
-var totalTimeDisplay = document.getElementById('totalTime');
-var currentTimeDisplay = document.getElementById('currentTime');
 var lefttimeButton = document.getElementById('lefttime');
 var righttimeButton = document.getElementById('righttime');
-var progress = document.getElementById('progress');
 var fullScreenBtn = document.querySelector(".full-screen-btn");
+var volumeButton = document.getElementById('volume');
 var poster = document.querySelector('.poster');
 var pularButton = document.getElementById('pular');
 var buttons = document.querySelectorAll(".quality");
 var currentSource = null; 
 var currentTimeBackup = 0; 
 
-var controlsPlayer = document.querySelector('.controlsplayer');
-var inactivityTimeout; // Variável para armazenar o timeout
-var isFirstPlay = true; // Variável para controlar se o primeiro play já aconteceu
 
-function addOffModeClass() {
-    if (!isFirstPlay) {
-        controlsPlayer.classList.add('offmode');
+// volume lateral
+const vol = document.getElementById('vol');
+const handlevol = document.getElementById('handlevol');
+const volnumb = document.getElementById('volnumb');
+const icvol = document.querySelector('.icvol');
+
+const initialVolume = 100;
+document.getElementById('barvol').style.height = `${initialVolume}%`;
+handlevol.style.bottom = `${initialVolume}%`;
+volnumb.textContent = `${initialVolume}%`;
+
+function updateVideoVolume() {
+    const currentHeight = parseFloat(document.getElementById('barvol').style.height) || 0;
+    const percentage = currentHeight / 100;
+
+    video.volume = percentage;
+
+    if (percentage === 0) {
+        icvol.classList.add('zerob');
+        video.muted = true;  
+        volumeButton.classList.add('vol');
+    } else {
+        icvol.classList.remove('zerob');
+        video.muted = false;  
+        volumeButton.classList.remove('vol');
     }
 }
 
-function removeOffModeClass() {
-    controlsPlayer.classList.remove('offmode');
-}
+handlevol.addEventListener('mousedown', function(e) {
+    isDragging = true;
+    e.preventDefault();
+});
 
-// Função para reiniciar o temporizador
-function resetInactivityTimer() {
-    clearTimeout(inactivityTimeout);
-    inactivityTimeout = setTimeout(addOffModeClass, 5000); // 3000 milissegundos (3 segundos) de inatividade
-}
+document.addEventListener('mouseup', function() {
+    isDragging = false;
+});
 
-// Função para remover a classe .offmode quando houver atividade
-function handleActivity() {
-    if (!isFirstPlay && controlsPlayer.classList.contains('offmode')) {
-        removeOffModeClass();
+document.addEventListener('keydown', function(e) {
+    if (isDragging) return;
+    
+    let currentHeight = parseFloat(document.getElementById('barvol').style.height) || 0;
+
+    switch(e.key) {
+        case 'ArrowUp':
+            
+            currentHeight = Math.min(100, currentHeight + 25);
+            break;
+        case 'ArrowDown':
+            currentHeight = Math.max(0, currentHeight - 25);
+            break;
+        default:
+            return; 
     }
-    resetInactivityTimer();
+
+    document.getElementById('barvol').style.height = `${currentHeight}%`;
+    handlevol.style.bottom = `${currentHeight}%`;
+
+    volnumb.textContent = `${Math.round(currentHeight)}%`;
+
+    updateVideoVolume();
+});
+
+vol.addEventListener('mousemove', function(e) {
+    if (isDragging) {
+        const posY = e.clientY - vol.getBoundingClientRect().top;
+        let volHeight = vol.clientHeight;
+        let percentage = (volHeight - posY) / volHeight * 100;
+
+        percentage = Math.max(0, Math.min(100, percentage));
+
+        document.getElementById('barvol').style.height = `${percentage}%`;
+        handlevol.style.bottom = `${percentage}%`;
+
+        volnumb.textContent = `${Math.round(percentage)}%`;
+
+        updateVideoVolume();
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    updateVideoVolume();
+});
+
+
+// brilho
+const BrightnessControl = {
+  init: function() {
+      this.brilhop = document.getElementById('brilhop');
+      this.handle = document.getElementById('handle');
+      this.percentageText = document.getElementById('percentage');
+      this.barbr = document.getElementById('barbr');
+      this.brilho = document.getElementById('brilho');
+      this.icbr = document.querySelector('.icbr');
+      this.isDragging = false;
+
+      const initialHeight = 100;
+      this.barbr.style.height = `${initialHeight}%`;
+      this.handle.style.bottom = `${initialHeight}%`;
+      this.percentageText.textContent = `${initialHeight}%`;
+      this.brilho.style.opacity = 0;
+
+      this.handle.addEventListener('mousedown', (e) => {
+          this.isDragging = true;
+          e.preventDefault();
+      });
+
+      document.addEventListener('mouseup', () => {
+          this.isDragging = false;
+      });
+
+      document.addEventListener('keydown', (e) => {
+          if (this.isDragging) return; 
+          
+          const rect = this.brilhop.getBoundingClientRect();
+          let brilhopHeight = rect.height;
+          let currentHeight = parseFloat(this.handle.style.bottom) || 0;
+
+          switch(e.key) {
+              case '1':
+                  currentHeight = Math.min(100, currentHeight + 25);
+                  break;
+              case '0':
+                  currentHeight = Math.max(0, currentHeight - 25);
+                  break;
+              default:
+                  return;
+          }
+
+          this.updateBrightness(currentHeight);
+      });
+
+      this.brilhop.addEventListener('mousemove', (e) => {
+          if (this.isDragging) {
+              const posY = e.clientY - this.brilhop.getBoundingClientRect().top;
+              let brilhopHeight = this.brilhop.clientHeight;
+              let percentage = (brilhopHeight - posY) / brilhopHeight * 100;
+
+              percentage = Math.max(0, Math.min(100, percentage));
+
+              this.updateBrightness(percentage);
+          }
+      });
+  },
+
+  updateBrightness: function(percentage) {
+      this.handle.style.bottom = `${percentage}%`;
+
+      this.percentageText.textContent = `${Math.round(percentage)}%`;
+
+      this.barbr.style.height = `${percentage}%`;
+
+      const opacity = 1 - (percentage / 100); 
+      this.brilho.style.opacity = opacity.toFixed(2); 
+
+      if (percentage === 0) {
+          this.icbr.classList.add('zerob');
+      } else {
+          this.icbr.classList.remove('zerob');
+      }
+  }
+};
+document.addEventListener('DOMContentLoaded', function() {
+  BrightnessControl.init();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// timeline
+const progressBar = document.getElementById('progress');
+const handletimeline = document.getElementById('handletimeline');
+const currentTimeElem = document.querySelector(".current-time");
+const totalTimeElem = document.querySelector(".total-time");
+let isDragging = false;
+
+let initialWidth = 0;
+document.getElementById('bar').style.width = `${initialWidth}%`;
+handletimeline.style.left = `${initialWidth}%`;
+
+handletimeline.addEventListener('mousedown', function(e) {
+isDragging = true;
+e.preventDefault();
+});
+
+document.addEventListener('mouseup', function() {
+isDragging = false;
+});
+
+
+progressBar.addEventListener('mousemove', function(e) {
+if (isDragging) {
+updateProgressFromMouse(e);
+}
+});
+
+function updateProgressFromMouse(e) {
+const posX = e.clientX - progressBar.getBoundingClientRect().left;
+let progressWidth = progressBar.clientWidth;
+let percentage = (posX / progressWidth) * 100;
+
+percentage = Math.max(0, Math.min(100, percentage));
+
+updateProgress(percentage);
 }
 
-// Event listeners para detectar interações do usuário
-document.addEventListener('mousemove', handleActivity);
-document.addEventListener('mousedown', handleActivity);
-document.addEventListener('keydown', handleActivity);
+function updateProgress(percentage) {
+document.getElementById('bar').style.width = `${percentage}%`;
+handletimeline.style.left = `${percentage}%`;
 
-// Inicialmente, remove a classe .offmode
-removeOffModeClass();
+const newTime = (percentage / 100) * video.duration;
+video.currentTime = newTime;
+}
 
-// Monitora eventos dentro de .controlsplayer para resetar o temporizador
-controlsPlayer.addEventListener('mousemove', handleActivity);
-controlsPlayer.addEventListener('mousedown', handleActivity);
-controlsPlayer.addEventListener('keydown', handleActivity);
+video.addEventListener('timeupdate', function() {
+const currentTime = video.currentTime;
+const duration = video.duration;
+const progressPercentage = (currentTime / duration) * 100;
+
+document.getElementById('bar').style.width = `${progressPercentage}%`;
+handletimeline.style.left = `${progressPercentage}%`;
+
+currentTimeElem.textContent = formatarTempo(currentTime);
+if (!isNaN(duration) && isFinite(duration) && duration > 0) {
+totalTimeElem.textContent = formatDuration(duration);
+}
+});
+
+video.addEventListener('loadedmetadata', function() {
+const duration = video.duration;
+const progressPercentage = (video.currentTime / duration) * 100;
+
+document.getElementById('bar').style.width = `${progressPercentage}%`;
+handletimeline.style.left = `${progressPercentage}%`;
+
+if (!isNaN(duration) && isFinite(duration) && duration > 0) {
+totalTimeElem.textContent = formatDuration(duration);
+}
+});
+
+function formatarTempo(tempo) {
+const minutos = Math.floor(tempo / 60);
+const segundos = Math.floor(tempo % 60);
+const minutosFormatados = minutos < 10 ? `0${minutos}` : minutos;
+const segundosFormatados = segundos < 10 ? `0${segundos}` : segundos;
+return `${minutosFormatados}:${segundosFormatados}`;
+}
+
+function formatDuration(time) {
+const seconds = Math.floor(time % 60);
+const minutes = Math.floor(time / 60) % 60;
+const hours = Math.floor(time / 3600);
+if (hours === 0) {
+return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+} else {
+return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
+}
+
+
+
+
+
+
+
+
+
+// travar tela
+var blockElement = document.getElementById('block');
+
+blockElement.addEventListener('click', function() {
+    if (!blockElement.classList.contains('unlock')) {
+        blockElement.classList.add('unlock');
+        document.querySelectorAll('.topp p, .logotl, #pular, .medp, .endp, .progressline').forEach(function(element) {
+            element.classList.add('unlock');
+        });
+    } else {
+        blockElement.classList.remove('unlock');
+        document.querySelectorAll('.topp p, .logotl, #pular, .medp, .endp, .progressline').forEach(function(element) {
+            element.classList.remove('unlock');
+        });
+    }
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'b' || e.key === 'B') {
+      var blockElement = document.getElementById('block');
+      blockElement.click();
+  }
+});
+
 
 
 // Qualidades
 var moreButton = document.getElementById('more');
 var viewModeElement = document.querySelector('.viewmode');
 
-// Adiciona um evento de clique ao #more
 moreButton.addEventListener('click', function() {
-  // Adiciona a classe .m ao .viewmode
   viewModeElement.classList.add('m');
 });
 
-// Adiciona um evento de clique ao .viewmode
 viewModeElement.addEventListener('click', function(event) {
-  // Verifica se o clique ocorreu diretamente no .viewmode ou em um filho (excluindo <span>)
   if (event.target === viewModeElement) {
     viewModeElement.classList.remove('m');
   }
 });
-
-// Adiciona um evento de teclado para a tecla "O"
 document.addEventListener('keydown', function(event) {
   if (event.key === 'o' || event.key === 'O') {
     viewModeElement.classList.toggle('m');
   }
 });
 
+
+// volume
+volumeButton.addEventListener('click', function() {
+    if (video.muted) {
+      video.muted = false;  
+      volumeButton.classList.remove('vol');
+    } else {
+      video.muted = true; 
+      volumeButton.classList.add('vol');
+    }
+  });
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'v' || event.key === 'v') {
+        volumeButton.classList.toggle('vol');
+        volumeButton.click();
+    }
+  });
 
 
 // reiniciar video
@@ -93,7 +362,7 @@ video.play();
 });
 
 document.addEventListener('keydown', function(event) {
-if (event.key === 'q' || event.key === 'Q') {
+if (event.key === 'r' || event.key === 'r') {
   reiniciarButton.click();
 }
 });
@@ -109,37 +378,6 @@ video.playbackRate = newPlaybackRate
 speedBtn.textContent = `${newPlaybackRate}x`
 }
 
-
-
-
-// Pular abertura
-pularButton.addEventListener('click', function() {
-pularButton.classList.add('p');
-setTimeout(function() {
-  pularButton.classList.remove('p');
-}, 300);
-pular();
-});
-
-document.addEventListener('keydown', function(event) {
-if (event.key === 'p' || event.key === 'P') {
-  pularButton.classList.add('p');
-  setTimeout(function() {
-      pularButton.classList.remove('p');
-  }, 300);
-  pular();
-}
-});
-
-function pular() {
-var currentTime = video.currentTime;
-var novoTempo = currentTime + 85;
-if (novoTempo <= video.duration) {
-  video.currentTime = novoTempo;
-} else {
-  video.currentTime = video.duration;
-}
-}
 
 // Controle de tela cheia via botão
 fullScreenBtn.addEventListener("click", toggleFullScreenMode);
@@ -170,71 +408,149 @@ if (document.fullscreenElement) {
 }
 });
 
-// timwline
-progress.value = 0;
 
-video.addEventListener('timeupdate', function() {
-var currentTime = formatTime(video.currentTime);
-var duration = formatTime(video.duration);
-currentTimeDisplay.textContent = currentTime;
-totalTimeDisplay.textContent = duration;
 
-var progressValue = (video.currentTime / video.duration) * 100;
-progress.value = progressValue;
+
+
+
+// Pular tempo button superior
+pularButton.addEventListener('click', function() {
+  pularButton.classList.add('p');
+  setTimeout(function() {
+      pularButton.classList.remove('p');
+  }, 300);
+  pular();
 });
-function formatTime(time) {
-var minutes = Math.floor(time / 60);
-var seconds = Math.floor(time % 60);
-return (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'p' || event.key === 'P') {
+      pularButton.classList.add('p');
+      setTimeout(function() {
+          pularButton.classList.remove('p');
+      }, 300);
+      pular();
+  }
+});
+
+function pular() {
+  var currentTime = video.currentTime;
+  var novoTempo = currentTime + 85;
+
+  if (novoTempo <= video.duration) {
+      video.currentTime = novoTempo;
+  } else {
+      video.currentTime = video.duration;
+  }
+
+  seconds = Math.max(0, seconds - 85); 
+  updatePOPButtonTimer();
 }
 
-progress.addEventListener('input', function() {
-var seekTo = video.duration * (progress.value / 100);
-video.currentTime = seekTo;
+  
+// Button "Pular OP"
+var pOPButton = document.getElementById('pOP');
+var timerInterval = null;
+var seconds = 85; 
+
+var videoStarted = false;
+function updateTimer() {
+    timerInterval = setInterval(function() {
+        seconds--;
+    
+        if (seconds >= 0) {
+            pOPButton.textContent = 'Pular OP (' + seconds + 's)';
+        } else {
+            clearInterval(timerInterval);
+            hidePOPButton(); 
+        }
+    }, 1000); 
+}
+function showPOPButton() {
+    pOPButton.style.display = 'flex';
+    pOPButton.classList.add('show');
+}
+
+function hidePOPButton() {
+    pOPButton.classList.remove('show');
+}
+
+function startTimerWithDelay() {
+    setTimeout(function() {
+        showPOPButton();
+        updateTimer(); 
+    }, parseInt(pOPButton.getAttribute('data-time')) * 1000 || 0);
+}
+
+video.addEventListener('play', function() {
+    if (!videoStarted) {
+        startTimerWithDelay(); 
+        videoStarted = true; 
+    } else {
+        updateTimer();
+    }
 });
 
-progress.addEventListener('mouseup', function() {
-progress.blur(); 
+video.addEventListener('pause', function() {
+    clearInterval(timerInterval);
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-progress.value = 0;
+video.addEventListener('ended', function() {
+    clearInterval(timerInterval);
+    hidePOPButton(); 
 });
 
-
-
+pOPButton.addEventListener('click', function() {
+    var secondsToSkip = seconds;
+    video.currentTime += secondsToSkip;
+    clearInterval(timerInterval);
+    hidePOPButton();
+});
 
 
 
 // Buttons para avançar/retornar tempo
 lefttimeButton.addEventListener('click', function() {
     video.currentTime -= 10;
+    seconds = Math.max(0, seconds - 10); // Atualiza o cronômetro
+    updatePOPButtonTimer();
+    videoContainer.classList.add('leftt');
+    setTimeout(function() {
+        videoContainer.classList.remove('leftt');
+    }, 300);
 });
 
 righttimeButton.addEventListener('click', function() {
     video.currentTime += 10;
+    seconds = Math.max(0, seconds - 10); 
+    updatePOPButtonTimer();
+    videoContainer.classList.add('rightt');
+    setTimeout(function() {
+        videoContainer.classList.remove('rightt');
+    }, 300);
 });
+
+function updatePOPButtonTimer() {
+    pOPButton.textContent = 'Pular OP (' + seconds + 's)';
+}
 
 videoContainer.addEventListener('dblclick', function(event) {
     var clickedElement = event.target;
 
-    // Verifica se o clique foi em um elemento que não deve ativar o duplo clique
     if (clickedElement.tagName !== 'BUTTON' && !clickedElement.closest('button')) {
         var containerWidth = videoContainer.offsetWidth;
         var clickX = event.clientX - videoContainer.getBoundingClientRect().left;
 
-        if (clickX < containerWidth / 2) { // Clique na parte esquerda do container
+        if (clickX < containerWidth / 2) {
             videoContainer.classList.add('leftt');
             videoContainer.classList.remove('rightt');
             lefttimeButton.click();
-        } else { // Clique na parte direita do container
+        } else {
             videoContainer.classList.add('rightt');
             videoContainer.classList.remove('leftt');
             righttimeButton.click();
         }
 
         clearTimeout(timeoutId);
-
         timeoutId = setTimeout(function() {
             videoContainer.classList.remove('leftt', 'rightt');
         }, 300);
@@ -242,49 +558,34 @@ videoContainer.addEventListener('dblclick', function(event) {
 });
 
 document.addEventListener('keydown', function(event) {
-    clearTimeout(timeoutId);
-
-    if (event.target.tagName !== 'BUTTON' && !event.target.closest('button')) {
+    if (event.target.tagName !== 'INPUT' && event.target.tagName !== 'TEXTAREA') {
         if (event.keyCode === 37) { 
-            lefttimeButton.click();
+            video.currentTime -= 10;
+            seconds = Math.max(0, seconds - 10);
+            updatePOPButtonTimer();
             videoContainer.classList.add('leftt');
-            timeoutId = setTimeout(function() {
+            setTimeout(function() {
                 videoContainer.classList.remove('leftt');
             }, 300);
-        } else if (event.keyCode === 39) {
-            righttimeButton.click();
+        } else if (event.keyCode === 39) { 
+            video.currentTime += 10;
+            seconds = Math.max(0, seconds - 10); 
+            updatePOPButtonTimer();
             videoContainer.classList.add('rightt');
-            timeoutId = setTimeout(function() {
+            setTimeout(function() {
                 videoContainer.classList.remove('rightt');
             }, 300);
         }
     }
 });
 
-// Variável para controlar o primeiro play
-var isFirstPlay = true;
 
-// Função para adicionar a classe .v aos elementos quando ocorrer o primeiro play
-function addVClassOnFirstPlay() {
-    if (isFirstPlay) {
-        document.querySelector('.topp').classList.add('v');
-        document.querySelector('.endp').classList.add('v');
-        document.querySelector('.progress').classList.add('v');
-        document.getElementById('lefttime').classList.add('v');
-        document.getElementById('righttime').classList.add('v');
-        isFirstPlay = false; // Marca que o primeiro play já aconteceu
-    }
-}
 
 // Play e Pause
 playpauseButton.addEventListener('click', function() {
     if (video.paused || video.ended) {
         video.play();
         playpauseButton.classList.add('pause');
-        poster.style.display = 'none'; // Oculta o poster ao iniciar a reprodução
-        addVClassOnFirstPlay(); // Adiciona a classe .v quando ocorre o primeiro play
-        isFirstPlay = false; // Marca que o primeiro play já aconteceu
-        removeOffModeClass(); // Remove .offmode ao iniciar o primeiro play
     } else {
         video.pause();
         playpauseButton.classList.remove('pause');
@@ -293,29 +594,12 @@ playpauseButton.addEventListener('click', function() {
 
 video.addEventListener('play', function() {
     playpauseButton.classList.add('pause');
-    poster.style.display = 'none';
-    addVClassOnFirstPlay(); // Adiciona a classe .v quando ocorre o primeiro play
 });
 
 video.addEventListener('pause', function() {
     playpauseButton.classList.remove('pause');
 });
 
-  
-video.addEventListener('play', function() {
-    playpauseButton.classList.add('pause');
-    poster.style.display = 'none'; 
-});
-
-video.addEventListener('pause', function() {
-    playpauseButton.classList.remove('pause');
-});
-
-
-  
-  
-  
-  
 // Adiciona a funcionalidade de play/pause usando a tecla Space
 document.addEventListener('keydown', function(event) {
     if (event.keyCode === 32) { // Tecla Space
@@ -323,14 +607,17 @@ document.addEventListener('keydown', function(event) {
         if (video.paused || video.ended) {
             video.play();
             playpauseButton.classList.add('pause');
-            poster.style.display = 'none'; // Oculta o poster ao iniciar a reprodução
-            addVClassOnFirstPlay(); // Adiciona a classe .v quando ocorre o primeiro play
         } else {
             video.pause();
             playpauseButton.classList.remove('pause');
         }
     }
 });
+
+
+
+
+
 // Seleciona elementos relevantes
 var video = document.getElementById('video');
 var buttons = document.querySelectorAll('.quality');
@@ -358,14 +645,11 @@ function loadVideo(sourceUrl) {
   buttons.forEach((button) => {
     if (button.getAttribute("data-source") === sourceUrl) {
       button.classList.add("p");
-      downloadLink.href = sourceUrl; // Define o href do link de download
-
       // Remove classes p1, p2, p3 da .download antes de adicionar a nova classe
       downloadLink.classList.remove("p1", "p2", "p3");
       
       // Adiciona a classe específica de qualidade ao link de download
       var qualityClass = button.classList[1]; // Assume que a segunda classe é a classe de qualidade (1080p, 720p, 480p)
-      downloadLink.classList.add("p" + qualityClass.substr(1)); // Adiciona p1, p2, p3 dependendo da qualidade
 
     } else {
       button.classList.remove("p");
@@ -388,8 +672,8 @@ function loadVideo(sourceUrl) {
       if (currentTimeBackup > 0) {
         video.currentTime = currentTimeBackup;
         currentTimeBackup = 0;
+        video.play();
       }
-      video.play();
     });
   } else {
     video.addEventListener("loadedmetadata", function () {
@@ -401,6 +685,11 @@ function loadVideo(sourceUrl) {
     });
   }
 }
+
+
+
+
+
 
 // Função para encontrar o próximo botão com data-source
 function findNextButtonWithSource() {
